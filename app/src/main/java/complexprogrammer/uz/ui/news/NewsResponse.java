@@ -1,7 +1,6 @@
-package complexprogrammer.uz;
+package complexprogrammer.uz.ui.news;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class NewsResponse implements Serializable {
     private int id;

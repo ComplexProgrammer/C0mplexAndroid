@@ -2,13 +2,7 @@ package complexprogrammer.uz.ui.news;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,29 +15,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import complexprogrammer.uz.ApiClient;
-import complexprogrammer.uz.ClickedActivity;
-import complexprogrammer.uz.GlideApp;
-import complexprogrammer.uz.MainActivity;
-import complexprogrammer.uz.NewsActivity;
-import complexprogrammer.uz.NewsResponse;
 import complexprogrammer.uz.R;
-import complexprogrammer.uz.ui.home.CustomAdapter;
+import complexprogrammer.uz.services.ApiClient;
+import complexprogrammer.uz.services.GlideApp;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -108,7 +87,20 @@ public class NewsFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(view.getContext(), ClickedActivity.class).putExtra("data",newsResponseList.get(position)));
+
+//                FragmentTransaction fragmentTransaction=getActivity().getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.add(R.id.newsLayout,new NewsFragment());
+//                fragmentTransaction.commit();
+
+//                NewsViewByIdFragment newsViewByIdFragment=new NewsViewByIdFragment();
+//                FragmentTransaction transaction= getFragmentManager().beginTransaction();
+//                transaction.replace(R.id.newsLayout,newsViewByIdFragment);
+//                transaction.commit();
+
+                Intent intent = new Intent(getActivity(), NewsViewByIdActivity.class).putExtra("data",newsResponseList.get(position));
+                startActivity(intent);
+
+
 
             }
         });
@@ -127,8 +119,7 @@ public class NewsFragment extends Fragment {
                 if(response.isSuccessful()){
                     String message="Yulanmoqda...";
                     Toast.makeText(context,message,Toast.LENGTH_LONG).show();
-                    Log.e("call",call.toString());
-                    Log.e("response",response.toString());
+
 
                     newsResponseList=response.body();
                     CustomAdapter customAdapter=new CustomAdapter(newsResponseList,context);
@@ -179,7 +170,7 @@ public class NewsFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView==null){
-                convertView=layoutInflater.inflate(R.layout.row_grid_items,parent,false);
+                convertView=layoutInflater.inflate(R.layout.news_row_grid_items,parent,false);
             }
             ImageView imageView=convertView.findViewById(R.id.imageView);
             TextView textView=convertView.findViewById(R.id.textView);

@@ -1,22 +1,33 @@
 package complexprogrammer.uz.ui.home;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-import androidx.recyclerview.widget.RecyclerView;
+import java.io.Serializable;
 
-public class HomeViewModel extends ViewModel {
+public class HomeViewModel implements Serializable {
+    public String title;
+    public String text;
+    public  String image_url;
 
-    private MutableLiveData<String> mText;
-
-
-    public HomeViewModel() {
-        final String Url="http://complexprogrammer.uz:4444/Api/C0mplexApi/GetNews";
-        mText = new MutableLiveData<>();
-        mText.setValue(Url);
+    public String getTitle() {
+        return title;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 }

@@ -1,9 +1,10 @@
-package complexprogrammer.uz;
+package complexprogrammer.uz.services;
 
 
 
 import java.util.List;
 
+import complexprogrammer.uz.ui.news.NewsResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

@@ -16,6 +16,16 @@
         android:label="@string/menu_news"
         tools:layout="@layout/fragment_news" />
     <fragment
+        android:id="@+id/nav_tic_tac_toe"
+        android:name="complexprogrammer.uz.ui.online_games.TicTacToeFragment"
+        android:label="@string/menu_tic_tac_toe"
+        tools:layout="@layout/fragment_tic_tac_toe" />
+    <fragment
+        android:id="@+id/nav_guid"
+        android:name="complexprogrammer.uz.ui.services.GuidFragment"
+        android:label="@string/menu_guid"
+        tools:layout="@layout/fragment_guid" />
+    <fragment
         android:id="@+id/nav_gallery"
         android:name="complexprogrammer.uz.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"

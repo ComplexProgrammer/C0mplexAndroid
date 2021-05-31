@@ -13,6 +13,14 @@
             android:icon="@drawable/ic_baseline_list_24"
             android:title="@string/menu_news" />
         <item
+            android:id="@+id/nav_tic_tac_toe"
+            android:icon="@drawable/ic_baseline_apps_24"
+            android:title="@string/menu_tic_tac_toe" />
+        <item
+            android:id="@+id/nav_guid"
+            android:icon="@drawable/ic_baseline_widgets_24"
+            android:title="@string/menu_guid" />
+        <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_gallery" />
@@ -21,4 +29,5 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
     </group>
+
 </menu>

@@ -1,6 +1,4 @@
-package complexprogrammer.uz;
-
-import com.google.gson.Gson;
+package complexprogrammer.uz.services;
 
 
 import okhttp3.OkHttpClient;

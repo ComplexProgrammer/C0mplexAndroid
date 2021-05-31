@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.services.GuidFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/GuidCreation"
+        android:layout_width="match_parent"
+        android:text="GUID Creation"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/GuidValue"
+        android:layout_width="match_parent"
+        android:layout_below="@id/GuidCreation"
+        android:textSize="16dp"
+        android:textColor="#0055ff"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/GuidCopy"
+        android:layout_below="@id/GuidValue"
+        android:layout_width="match_parent"
+        android:background="#00FF00"
+        android:text="Copy"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
