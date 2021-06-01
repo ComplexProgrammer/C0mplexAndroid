@@ -22,9 +22,10 @@ import java.util.List;
 import java.util.Map;
 
 import complexprogrammer.uz.models.ExpandListAdapter;
-import complexprogrammer.uz.models.ExpandedMenuModel;
+import complexprogrammer.uz.models.ExpandListModel;
 
 public class MainActivity extends AppCompatActivity {
+
 
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -67,13 +68,15 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
     ExpandableListView expListView;
-    ArrayList<String> listDataHeader=new ArrayList<>();
-    HashMap<String,List<String>> listDataChild=new HashMap<>();
+    ArrayList<ExpandListModel> listDataHeader=new ArrayList<>();
+    HashMap<ExpandListModel,List<ExpandListModel>> listDataChild=new HashMap<>();
     ExpandListAdapter listAdapter;
+
+
     private void enableExpandableList() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
-        expListView = (ExpandableListView) findViewById(R.id.left_drawer);
+        listDataHeader = new ArrayList<ExpandListModel>();
+        listDataChild = new HashMap<ExpandListModel, List<ExpandListModel>>();
+        expListView = (ExpandableListView) findViewById(R.id.navigationmenu);
 
         prepareListData(listDataHeader, listDataChild);
         listAdapter = new ExpandListAdapter(this, listDataHeader, listDataChild);
@@ -135,71 +138,40 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void prepareListData(List<String> listDataHeader, Map<String,
-                List<String>> listDataChild) {
-        // Adding child data
-        listDataHeader.add("Product1");
-        listDataHeader.add("product2");
-        listDataHeader.add("Product3");
-
-        // Adding child data
-        List<String> top = new ArrayList<String>();
-        top.add("x1");
-        top.add("x2");
-        top.add("x3");
-        top.add("x4");
-        top.add("x5");
+    private void prepareListData(List<ExpandListModel> listDataHeader, Map<ExpandListModel,
+                List<ExpandListModel>> listDataChild) {
 
 
-        List<String> mid = new ArrayList<String>();
-        mid.add("y1");
-        mid.add("y2");
-        mid.add("y3");
+        ExpandListModel item1 = new ExpandListModel();
+        item1.setIconName("Home");
+        item1.setIconImg(R.drawable.ic_menu_camera);
+        // Adding data header
+        listDataHeader.add(item1);
 
-        List<String> bottom = new ArrayList<String>();
-        bottom.add("z1");
-        bottom.add("z2");
-        bottom.add("z3");
-
-
-
-        listDataChild.put(listDataHeader.get(0), top); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), mid);
-        listDataChild.put(listDataHeader.get(2), bottom);
-//        listDataHeader = new ArrayList<String>();
-//        listDataChild = new HashMap<String, List<String>>();
-
-//        ExpandedMenuModel item1 = new ExpandedMenuModel();
-//        item1.setIconName("Home");
-//        item1.setIconImg(android.R.drawable.ic_menu_camera);
-//        // Adding data header
-//        listDataHeader.add(item1);
-//
-//        ExpandedMenuModel _item1 = new ExpandedMenuModel();
-//        _item1.setIconName("Services");
-//        _item1.setIconImg(R.drawable.ic_baseline_construction_24);
-//        // Adding data header
-////        listDataHeader.add(_item1);
-//
-//        ExpandedMenuModel item2 = new ExpandedMenuModel();
-//        item2.setIconName("News");
+        ExpandListModel item2 = new ExpandListModel();
+        item2.setIconName("News");
+        item2.setIconImg(R.drawable.ic_baseline_construction_24);
 //        item2.setIconImg(R.drawable.ic_baseline_list_24);
-//        listDataHeader.add(item2);
-//
-//        ExpandedMenuModel item3 = new ExpandedMenuModel();
-//        item3.setIconName("@string/menu_tic_tac_toe");
-//        listDataHeader.add(item3);
-//        // Adding child data
-//        List<ExpandedMenuModel> heading1 = new ArrayList<ExpandedMenuModel>();
-//        heading1.add(_item1);
-//
-//        List<ExpandedMenuModel> heading2 = new ArrayList<ExpandedMenuModel>();
-////        heading2.add(item2);
-////        heading2.add(item2);
-////        heading2.add(item2);
-//
-//        listDataChild.put(listDataHeader.get(0), heading1);// Header, Child data
-//        listDataChild.put(listDataHeader.get(1), heading2);
+        listDataHeader.add(item2);
+
+        ExpandListModel item3 = new ExpandListModel();
+        item3.setIconName("test");
+        item3.setIconImg(R.drawable.ic_baseline_list_24);
+//        item3.setIconImg(R.drawable.ic_baseline_apps_24);
+        listDataHeader.add(item3);
+
+        // Adding child data
+        List<ExpandListModel> heading1 = new ArrayList<ExpandListModel>();
+        heading1.add(item1);
+
+        List<ExpandListModel> heading2 = new ArrayList<ExpandListModel>();
+        heading2.add(item2);
+        heading2.add(item2);
+        heading2.add(item2);
+
+        listDataChild.put(listDataHeader.get(0), heading1);// Header, Child data
+        listDataChild.put(listDataHeader.get(1), heading2);
+        listDataChild.put(listDataHeader.get(2), heading2);
 
 
     }

@@ -1,6 +1,6 @@
 package complexprogrammer.uz.models;
 
-public class ExpandedMenuModel {
+public class ExpandListModel {
     String iconName = "";
     int iconImg = -1; // menu icon resource id
 

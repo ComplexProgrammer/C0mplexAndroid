@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -15,12 +16,12 @@ import complexprogrammer.uz.R;
 
 public class ExpandListAdapter extends BaseExpandableListAdapter {
     private Context _context;
-    private List<String> _listDataHeader; // header titles
+    private List<ExpandListModel> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<String, List<String>> _listDataChild;
+    private HashMap<ExpandListModel, List<ExpandListModel>> _listDataChild;
 
-    public ExpandListAdapter(Context context, List<String> listDataHeader,
-                             HashMap<String, List<String>> listChildData) {
+    public ExpandListAdapter(Context context, List<ExpandListModel> listDataHeader,
+                             HashMap<ExpandListModel, List<ExpandListModel>> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
@@ -41,7 +42,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final String childText = (String) getChild(groupPosition, childPosition);
+        final ExpandListModel childText = (ExpandListModel) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
@@ -52,12 +53,17 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.submenu);
 
-        txtListChild.setText(childText);
+        txtListChild.setText(childText.getIconName());
+        ImageView headerIcon = (ImageView) convertView.findViewById(R.id.iconimage);
+        headerIcon.setImageResource(childText.getIconImg());
         return convertView;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
+        if (this._listDataChild.get(this._listDataHeader.get(groupPosition)) == null)
+            return 0;
+        else
         return this._listDataChild.get(this._listDataHeader.get(groupPosition))
                 .size();
     }
@@ -80,7 +86,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
-        String headerTitle = (String) getGroup(groupPosition);
+        ExpandListModel headerTitle = (ExpandListModel) getGroup(groupPosition);
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -90,9 +96,9 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         TextView lblListHeader = (TextView) convertView
                 .findViewById(R.id.submenu);
         lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(headerTitle);
-//        ImageView headerIcon = (ImageView) convertView.findViewById(R.id.iconimage);
-//        headerIcon.setImageResource(headerTitle.getIconImg());
+        lblListHeader.setText(headerTitle.getIconName());
+        ImageView headerIcon = (ImageView) convertView.findViewById(R.id.iconimage);
+        headerIcon.setImageResource(headerTitle.getIconImg());
 
         return convertView;
     }
