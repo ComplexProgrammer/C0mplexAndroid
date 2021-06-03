@@ -9,6 +9,20 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
+            android:id="@+id/item3"
+            android:title="Item 3"
+            >
+            <menu>
+                <item
+                    android:id="@+id/subitem1"
+                    android:title="Sub Item 1" />
+                <item
+                    android:id="@+id/subitem2"
+                    android:title="Sub Item 2" />
+            </menu>
+        </item>
+
+        <item
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_baseline_list_24"
             android:title="@string/menu_news" />
