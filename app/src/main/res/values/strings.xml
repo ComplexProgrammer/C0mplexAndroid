@@ -37,4 +37,29 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_expandable_list_view">ExpandableListViewActivity</string>
+
+    <string name="drawer_open"></string>
+    <string name="drawer_close"></string>
+
+    <string name="fa_glass">&#xf000;</string>
+    <string name="fa_music">&#xf001;</string>
+    <string name="fa_search">&#xf002;</string>
+    <string name="fa_envelope_o">&#xf003;</string>
+    <string name="fa_heart">&#xf004;</string>
+    <string name="fa_star">&#xf005;</string>
+    <string name="fa_star_o">&#xf006;</string>
+    <string name="fa_user">&#xf007;</string>
+    <string name="fa_film">&#xf008;</string>
+    <string name="fa_home">&#xf015;</string>
+    <string name="fa_news">&#xf03a;</string>
+    <string name="fa_games">&#xf11b;</string>
+    <string name="fa_services">&#xf0ad;</string>
+    <string name="fa_tutorials">&#xf0f2;</string>
+    <string name="fa_contact">&#xf0e0;</string>
+    <string name="fa_settings">&#xf013;</string>
+    <string name="fa_login">&#xf08b;</string>
+
+
+    <string name="fa_chevron_right">&#xf054;</string>
+    <string name="fa_chevron_down">&#xf078;</string>
 </resources>
