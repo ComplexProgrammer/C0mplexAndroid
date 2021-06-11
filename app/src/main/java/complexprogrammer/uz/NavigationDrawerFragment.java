@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -19,10 +20,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import complexprogrammer.uz.ui.home.HomeFragment;
+import complexprogrammer.uz.ui.news.NewsFragment;
+import complexprogrammer.uz.ui.online_games.TicTacToeFragment;
 
 
 public class NavigationDrawerFragment extends Fragment {
@@ -90,11 +98,22 @@ public class NavigationDrawerFragment extends Fragment {
 
         mDrawerListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+
+                String te=expandableListTitle.get(groupPosition);
+                Toast.makeText(getContext(),te,Toast.LENGTH_SHORT).show();
                 boolean retVal = true;
 
                 if (groupPosition == ExpandableListAdapter.ITEM1) {
+                    Toast.makeText(getContext(),"Home",Toast.LENGTH_SHORT).show();
+                    HomeFragment fragment=new HomeFragment();
+                    FragmentManager FM= getActivity().getSupportFragmentManager();
+                    FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
 
                 } else if (groupPosition == ExpandableListAdapter.ITEM2) {
+                    Toast.makeText(getContext(),"News",Toast.LENGTH_SHORT).show();
+                    NewsFragment fragment=new NewsFragment();
+                    FragmentManager FM=getActivity().getSupportFragmentManager();
+                    FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
 
                 } else if (groupPosition == ExpandableListAdapter.ITEM3) {
                     retVal = false;
@@ -133,13 +152,24 @@ public class NavigationDrawerFragment extends Fragment {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
 
+                Toast.makeText(
+                        getContext(),
+                        expandableListTitle.get(groupPosition)
+                                + " : "
+                                + expandableListDetail.get(
+                                expandableListTitle.get(groupPosition)).get(
+                                childPosition), Toast.LENGTH_SHORT)
+                        .show();
+
+
+
                 if (groupPosition == ExpandableListAdapter.ITEM3) {
                     if (childPosition == ExpandableListAdapter.SUBITEM1_1) {
-
                         // call activity here
-                        Intent intent = new Intent(getActivity(), MainActivity.class);
-                        startActivity(intent);
-
+                        Toast.makeText(getContext(),"Tic Tac Toe",Toast.LENGTH_SHORT).show();
+                        TicTacToeFragment fragment=new TicTacToeFragment();
+                        FragmentManager FM=getActivity().getSupportFragmentManager();
+                        FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
 
                     }
 //                    else if (childPosition == ExpandableListAdapter.SUBITEM1_2) {
