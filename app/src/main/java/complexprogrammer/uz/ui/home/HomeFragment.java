@@ -31,6 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import complexprogrammer.uz.R;
+import complexprogrammer.uz.models.NetworkUtil;
 import complexprogrammer.uz.services.GlideApp;
 
 
@@ -40,7 +41,7 @@ public class HomeFragment extends Fragment {
     ArrayList<String>  imageUrls= new ArrayList<>();
     ArrayList<String> titles = new ArrayList<>();
     ArrayList<String> texts = new ArrayList<>();
-    private android.widget.ImageView imageView;
+    NetworkUtil networkUtil=new NetworkUtil();
 //    @Override
 //    public void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
@@ -49,6 +50,21 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        String status = NetworkUtil.getConnectivityStatusString(getContext());
+        ImageView imageView=root.findViewById(R.id.no_internet);
+        if(status=="No internet is available"){
+            imageView.setVisibility(View.VISIBLE);
+        }
+        else {
+            imageView.setVisibility(View.INVISIBLE);
+            LoadData(root);
+        }
+        Toast.makeText(getContext(), status, Toast.LENGTH_LONG).show();
+        return root;
+    }
+
+
+    public void LoadData(View root){
         CustomAdapter customAdapter = new CustomAdapter(root.getContext(), titles,texts,imageUrls);
 
 
@@ -101,7 +117,6 @@ public class HomeFragment extends Fragment {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(objectRequest);
-        return root;
     }
     public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder>{
         private ArrayList<String> titles;

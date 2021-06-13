@@ -78,6 +78,8 @@ public class GuidFragment extends Fragment {
             public void onClick(View v) {
                 GeneratedGuid(view);
                 GuidCopy.setTextColor(getResources().getColor(R.color.White));
+                GuidCopy.setBackgroundColor(getResources().getColor(R.color.Green));
+
                 GuidCopy.setText("Copy");
             }
         });
@@ -88,6 +90,7 @@ public class GuidFragment extends Fragment {
                 ClipData clip = ClipData.newPlainText("label", GuidValue.getText());
                 clipboard.setPrimaryClip(clip);
                 GuidCopy.setTextColor(getResources().getColor(R.color.Green));
+                GuidCopy.setBackgroundColor(getResources().getColor(R.color.White));
                 GuidCopy.setText("Copyed!");
             }
         });

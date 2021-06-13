@@ -1,20 +1,21 @@
 package complexprogrammer.uz;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import com.google.android.material.navigation.NavigationView;
-
+import complexprogrammer.uz.ui.gallery.GalleryFragment;
 import complexprogrammer.uz.ui.home.HomeFragment;
 import complexprogrammer.uz.ui.news.NewsFragment;
 import complexprogrammer.uz.ui.online_games.TicTacToeFragment;
@@ -31,7 +32,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationDrawer
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle(R.string.menu_home);
+        ColorDrawable colorDrawable
+                = new ColorDrawable(Color.parseColor("#FF018786"));
+        getSupportActionBar().setTitle(R.string.nav_header_title);
+        getSupportActionBar().setBackgroundDrawable(colorDrawable);
+
 
 
         // Set up the drawer.
@@ -47,15 +52,20 @@ public class MainActivity extends AppCompatActivity  implements NavigationDrawer
 
 
 
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.nav_home, R.id.nav_news,R.id.nav_tic_tac_toe,R.id.nav_guid, R.id.nav_gallery, R.id.nav_slideshow)
-//                .setDrawerLayout(mDrawerLayout)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(mNavigationDrawerFragment, navController);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -67,9 +77,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationDrawer
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.navigation_drawer);
-        return NavigationUI.navigateUp(navController, mDrawerLayout)
-                || super.onSupportNavigateUp();
+        return super.onSupportNavigateUp() ;
     }
 
     @Override
@@ -86,7 +94,47 @@ public class MainActivity extends AppCompatActivity  implements NavigationDrawer
 
         return super.onOptionsItemSelected(item);
     }
+    private void ShowFragment(int itemId) {
 
+        Fragment fragment = null;
+
+        switch (itemId) {
+            case R.id.nav_home:
+                fragment = new HomeFragment();
+                break;
+            case R.id.nav_news:
+                fragment = new NewsFragment();
+                break;
+            case R.id.nav_gallery:
+                fragment = new GalleryFragment();
+                break;
+
+        }
+
+
+        if (fragment != null) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+            fragmentTransaction.commit();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+
+    public boolean onNavigationItemSelected(MenuItem item) {
+
+
+        //Calling the ShowFragment() method here to show the our created menu as default menus.
+        ShowFragment(item.getItemId());
+
+
+        return true;
+    }
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         Toast.makeText(this,"position "+position,Toast.LENGTH_SHORT).show();

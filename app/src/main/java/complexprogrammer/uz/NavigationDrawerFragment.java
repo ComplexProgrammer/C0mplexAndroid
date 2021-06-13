@@ -1,7 +1,6 @@
 package complexprogrammer.uz;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,17 +19,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import complexprogrammer.uz.ui.ContactFragment;
+import complexprogrammer.uz.ui.account.LoginFragment;
 import complexprogrammer.uz.ui.home.HomeFragment;
 import complexprogrammer.uz.ui.news.NewsFragment;
 import complexprogrammer.uz.ui.online_games.TicTacToeFragment;
+import complexprogrammer.uz.ui.services.ChangeTextFragment;
+import complexprogrammer.uz.ui.services.CompressImageFragment;
+import complexprogrammer.uz.ui.services.GuidFragment;
 
 
 public class NavigationDrawerFragment extends Fragment {
@@ -72,6 +74,8 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+//        ActionBar actionBar = getActionBar();
+//        actionBar.hide();
         mDrawerListView = (ExpandableListView) inflater.inflate(
                 R.layout.drawer_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -104,17 +108,10 @@ public class NavigationDrawerFragment extends Fragment {
                 boolean retVal = true;
 
                 if (groupPosition == ExpandableListAdapter.ITEM1) {
-                    Toast.makeText(getContext(),"Home",Toast.LENGTH_SHORT).show();
-                    HomeFragment fragment=new HomeFragment();
-                    FragmentManager FM= getActivity().getSupportFragmentManager();
-                    FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
+                    ShowFragment(new HomeFragment());
 
                 } else if (groupPosition == ExpandableListAdapter.ITEM2) {
-                    Toast.makeText(getContext(),"News",Toast.LENGTH_SHORT).show();
-                    NewsFragment fragment=new NewsFragment();
-                    FragmentManager FM=getActivity().getSupportFragmentManager();
-                    FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
-
+                    ShowFragment(new NewsFragment());
                 } else if (groupPosition == ExpandableListAdapter.ITEM3) {
                     retVal = false;
                     // call some activity here
@@ -128,9 +125,7 @@ public class NavigationDrawerFragment extends Fragment {
                     // call some activity here
                 }
                 else if (groupPosition == ExpandableListAdapter.ITEM6) {
-
-                    // call some activity here
-
+                    ShowFragment(new ContactFragment());
                 }
                 else if (groupPosition == ExpandableListAdapter.ITEM7) {
                     retVal = false;
@@ -138,9 +133,7 @@ public class NavigationDrawerFragment extends Fragment {
 
                 }
                 else if (groupPosition == ExpandableListAdapter.ITEM8) {
-
-                    // call some activity here
-
+                    ShowFragment(new LoginFragment());
                 }
                 return retVal;
             }
@@ -165,12 +158,7 @@ public class NavigationDrawerFragment extends Fragment {
 
                 if (groupPosition == ExpandableListAdapter.ITEM3) {
                     if (childPosition == ExpandableListAdapter.SUBITEM1_1) {
-                        // call activity here
-                        Toast.makeText(getContext(),"Tic Tac Toe",Toast.LENGTH_SHORT).show();
-                        TicTacToeFragment fragment=new TicTacToeFragment();
-                        FragmentManager FM=getActivity().getSupportFragmentManager();
-                        FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
-
+                        ShowFragment(new TicTacToeFragment());
                     }
 //                    else if (childPosition == ExpandableListAdapter.SUBITEM1_2) {
 //
@@ -192,19 +180,13 @@ public class NavigationDrawerFragment extends Fragment {
                 } else if (groupPosition == complexprogrammer.uz.ExpandableListAdapter.ITEM4) {
 
                     if (childPosition == complexprogrammer.uz.ExpandableListAdapter.SUBITEM2_1) {
-
-                        // call activity here
-
+                        ShowFragment(new GuidFragment());
                     }
                     else if (childPosition == complexprogrammer.uz.ExpandableListAdapter.SUBITEM2_2) {
-
-                        // call activity here
-
+                        ShowFragment(new ChangeTextFragment());
                     }
                     else if (childPosition == complexprogrammer.uz.ExpandableListAdapter.SUBITEM2_3) {
-
-                        // call activity here
-
+                        ShowFragment(new CompressImageFragment());
                     }
 //                    else if (childPosition == ExpandableListAdapter.SUBITEM2_4) {
 //
@@ -226,7 +208,14 @@ public class NavigationDrawerFragment extends Fragment {
 
         return mDrawerListView;
     }
-
+    private void ShowFragment(Fragment fragment) {
+        if (fragment != null) {
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+            fragmentTransaction.commit();
+        }
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+    }
 
 
     public boolean isDrawerOpen() {
@@ -250,7 +239,6 @@ public class NavigationDrawerFragment extends Fragment {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the navigation drawer and the action bar app icon.
         mDrawerToggle = new ActionBarDrawerToggle(
@@ -344,11 +332,11 @@ public class NavigationDrawerFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // If the drawer is open, show the global app actions in the action bar. See also
         // showGlobalContextActionBar, which controls the top-left area of the action bar.
-        if (mDrawerLayout != null && isDrawerOpen()) {
-            inflater.inflate(R.menu.main_menu, menu);
-            showGlobalContextActionBar();
-        }
-        super.onCreateOptionsMenu(menu, inflater);
+//        if (mDrawerLayout != null && isDrawerOpen()) {
+//            inflater.inflate(R.menu.main_menu, menu);
+//            showGlobalContextActionBar();
+//        }
+//        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -380,6 +368,9 @@ public class NavigationDrawerFragment extends Fragment {
      * Callbacks interface that all activities using this fragment must implement.
      */
     public static interface NavigationDrawerCallbacks {
+        @SuppressWarnings("StatementWithEmptyBody")
+        boolean onNavigationItemSelected(MenuItem item);
+
         /**
          * Called when an item in the navigation drawer is selected.
          */

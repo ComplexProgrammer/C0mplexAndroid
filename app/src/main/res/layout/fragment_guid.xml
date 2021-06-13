@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/guid_layout"
     tools:context=".ui.services.GuidFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -10,20 +11,32 @@
         android:id="@+id/GuidCreation"
         android:layout_width="match_parent"
         android:text="GUID Creation"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/Blue"
+        android:textColor="@color/White"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/GuidValue"
         android:layout_width="match_parent"
         android:layout_below="@id/GuidCreation"
         android:textSize="16dp"
-        android:textColor="#0055ff"
+        android:textColor="@color/Black"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:textAlignment="center"
         android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/GuidCopy"
-        android:layout_below="@id/GuidValue"
+        android:background="@color/Green"
+        android:textColor="@color/White"
         android:layout_width="match_parent"
-        android:background="#00FF00"
-        android:text="Copy"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/GuidValue"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Copy" />
 
 </RelativeLayout>
