@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import complexprogrammer.uz.ui.ContactFragment;
-import complexprogrammer.uz.ui.account.LoginFragment;
+import complexprogrammer.uz.ui.account.LoginActivity;
 import complexprogrammer.uz.ui.home.HomeFragment;
 import complexprogrammer.uz.ui.news.NewsFragment;
 import complexprogrammer.uz.ui.online_games.TicTacToeFragment;
@@ -133,7 +133,7 @@ public class NavigationDrawerFragment extends Fragment {
 
                 }
                 else if (groupPosition == ExpandableListAdapter.ITEM8) {
-                    ShowFragment(new LoginFragment());
+//                    ShowFragment(new LoginFragment());
                 }
                 return retVal;
             }
