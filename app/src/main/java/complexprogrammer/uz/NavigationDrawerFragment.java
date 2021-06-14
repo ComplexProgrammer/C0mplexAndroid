@@ -1,6 +1,7 @@
 package complexprogrammer.uz;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -133,6 +134,8 @@ public class NavigationDrawerFragment extends Fragment {
 
                 }
                 else if (groupPosition == ExpandableListAdapter.ITEM8) {
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
 //                    ShowFragment(new LoginFragment());
                 }
                 return retVal;

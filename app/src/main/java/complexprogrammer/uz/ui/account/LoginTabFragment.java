@@ -15,8 +15,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
-import org.jetbrains.annotations.NotNull;
-
 import complexprogrammer.uz.R;
 
 public class LoginTabFragment extends Fragment {
@@ -28,10 +26,17 @@ public class LoginTabFragment extends Fragment {
     TextView forgetPass;
     Button login;
     float v=0;
+
+    @Override
+    public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.login_tab_fragment,container,false);
+
         email=view.findViewById(R.id.email);
         pass=view.findViewById(R.id.pass);
         forgetPass=view.findViewById(R.id.forget_pass);
@@ -56,9 +61,10 @@ public class LoginTabFragment extends Fragment {
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-//        adapter = new LoginAdapter(getChildFragmentManager(),getContext(),2);
-//        viewPager = view.findViewById(R.id.view_pager);
+//        adapter = new LoginAdapter(getChildFragmentManager(),getContext(),tabLayout);
+//        viewPager = view.findViewById(R.id.pager);
 //        viewPager.setAdapter(adapter);
+
     }
+
 }
