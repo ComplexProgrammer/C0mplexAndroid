@@ -20,10 +20,9 @@ public class SignupTabFragment extends Fragment {
     EditText first_name,last_name, email,pass,pass2;
     Button sign_up;
     float v=0;
-    @Nullable
-    @org.jetbrains.annotations.Nullable
     @Override
-    public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.signup_tab_fragment,container,false);
 
         first_name=view.findViewById(R.id.first_name);
