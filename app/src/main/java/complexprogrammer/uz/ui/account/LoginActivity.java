@@ -38,7 +38,17 @@ public class LoginActivity extends AppCompatActivity {
         adapter = new LoginAdapter(getSupportFragmentManager(),this,tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        facebook.setTranslationY(300);
+        google.setTranslationY(300);
+        twitter.setTranslationY(300);
 
+        facebook.setAlpha(v);
+        google.setAlpha(v);
+        twitter.setAlpha(v);
+
+        facebook.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
+        google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
+        twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(800).start();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -49,25 +59,25 @@ public class LoginActivity extends AppCompatActivity {
                     twitter.setVisibility(View.VISIBLE);
 
 
-                    facebook.setTranslationY(300);
-                    google.setTranslationY(300);
-                    twitter.setTranslationY(300);
 
-                    facebook.setAlpha(v);
-                    google.setAlpha(v);
-                    twitter.setAlpha(v);
-
-                    facebook.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
-                    google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
-                    twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(800).start();
                 } else if (tab.getPosition() == 1) {
-                    facebook.setVisibility(View.GONE);
-                    google.setVisibility(View.GONE);
-                    twitter.setVisibility(View.GONE);
+//                    facebook.setVisibility(View.GONE);
+//                    google.setVisibility(View.GONE);
+//                    twitter.setVisibility(View.GONE);
 
 
                 }
+                facebook.setTranslationY(300);
+                google.setTranslationY(300);
+                twitter.setTranslationY(300);
 
+                facebook.setAlpha(v);
+                google.setAlpha(v);
+                twitter.setAlpha(v);
+
+                facebook.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
+                google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
+                twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(800).start();
                 viewPager.setAdapter(adapter);
                 viewPager.setCurrentItem(tab.getPosition());
 

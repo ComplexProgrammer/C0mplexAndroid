@@ -20,7 +20,9 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import complexprogrammer.uz.NoInternetFragment;
 import complexprogrammer.uz.R;
+import complexprogrammer.uz.models.NetworkUtil;
 import complexprogrammer.uz.services.ApiClient;
 import complexprogrammer.uz.services.GlideApp;
 import retrofit2.Call;
@@ -84,21 +86,23 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news, container, false);
+        String status = NetworkUtil.getConnectivityStatusString(getContext());
+        if(status=="No internet is available"){
+            //startActivity(new Intent(getActivity(), NoInternetActivity.class));
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new NoInternetFragment()).commit();
+        }
+        else {
+            LoadData(view);
+        }
+        return  view;
+    }
+
+    private void LoadData(View view) {
         gridView=view.findViewById(R.id.gridView);
         getAllNews(view.getContext());
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-//                FragmentTransaction fragmentTransaction=getActivity().getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction.add(R.id.newsLayout,new NewsFragment());
-//                fragmentTransaction.commit();
-
-//                NewsViewByIdFragment newsViewByIdFragment=new NewsViewByIdFragment();
-//                FragmentTransaction transaction= getFragmentManager().beginTransaction();
-//                transaction.replace(R.id.newsLayout,newsViewByIdFragment);
-//                transaction.commit();
-
                 Intent intent = new Intent(getActivity(), NewsViewByIdActivity.class).putExtra("data",newsResponseList.get(position));
                 startActivity(intent);
 
@@ -106,9 +110,8 @@ public class NewsFragment extends Fragment {
 
             }
         });
-
-        return  view;
     }
+
     public void getAllNews(Context context){
         Call<List<NewsResponse>> newsResponse= ApiClient.getInterface().getAllNews();
 

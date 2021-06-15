@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationDrawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.main_layout);
 
 
-
+        ShowFragment(R.id.nav_home);
 
 
         // Passing each menu ID as a set of Ids because each

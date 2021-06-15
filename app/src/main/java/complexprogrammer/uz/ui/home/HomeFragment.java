@@ -30,6 +30,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import complexprogrammer.uz.NoInternetFragment;
 import complexprogrammer.uz.R;
 import complexprogrammer.uz.models.NetworkUtil;
 import complexprogrammer.uz.services.GlideApp;
@@ -51,15 +52,13 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         String status = NetworkUtil.getConnectivityStatusString(getContext());
-        ImageView imageView=root.findViewById(R.id.no_internet);
         if(status=="No internet is available"){
-            imageView.setVisibility(View.VISIBLE);
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new NoInternetFragment()).commit();
         }
         else {
-            imageView.setVisibility(View.INVISIBLE);
             LoadData(root);
         }
-        Toast.makeText(getContext(), status, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getContext(), status, Toast.LENGTH_LONG).show();
         return root;
     }
 

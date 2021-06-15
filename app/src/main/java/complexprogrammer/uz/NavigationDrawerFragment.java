@@ -77,6 +77,7 @@ public class NavigationDrawerFragment extends Fragment {
                              Bundle savedInstanceState) {
 //        ActionBar actionBar = getActionBar();
 //        actionBar.hide();
+
         mDrawerListView = (ExpandableListView) inflater.inflate(
                 R.layout.drawer_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -104,8 +105,8 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
 
-                String te=expandableListTitle.get(groupPosition);
-                Toast.makeText(getContext(),te,Toast.LENGTH_SHORT).show();
+//                String te=expandableListTitle.get(groupPosition);
+//                Toast.makeText(getContext(),te,Toast.LENGTH_SHORT).show();
                 boolean retVal = true;
 
                 if (groupPosition == ExpandableListAdapter.ITEM1) {
@@ -148,14 +149,14 @@ public class NavigationDrawerFragment extends Fragment {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
 
-                Toast.makeText(
-                        getContext(),
-                        expandableListTitle.get(groupPosition)
-                                + " : "
-                                + expandableListDetail.get(
-                                expandableListTitle.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT)
-                        .show();
+//                Toast.makeText(
+//                        getContext(),
+//                        expandableListTitle.get(groupPosition)
+//                                + " : "
+//                                + expandableListDetail.get(
+//                                expandableListTitle.get(groupPosition)).get(
+//                                childPosition), Toast.LENGTH_SHORT)
+//                        .show();
 
 
 
@@ -207,7 +208,6 @@ public class NavigationDrawerFragment extends Fragment {
 
         View header= inflater.inflate(R.layout.drawer_header, null);
         mDrawerListView.addHeaderView(header);
-
 
         return mDrawerListView;
     }
