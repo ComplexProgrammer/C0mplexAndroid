@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,11 @@ import androidx.fragment.app.Fragment;
 import org.jetbrains.annotations.NotNull;
 
 import complexprogrammer.uz.R;
+import complexprogrammer.uz.models.TextValue;
+import complexprogrammer.uz.services.ApiClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignupTabFragment extends Fragment {
     EditText first_name,last_name, email,pass,pass2;
@@ -52,6 +58,41 @@ public class SignupTabFragment extends Fragment {
         pass.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
         pass2.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(900).start();
         sign_up.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(1100).start();
+
+        sign_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pass.getText()==pass2.getText()){
+                    SignUpViewModel model=new SignUpViewModel();
+                    model.first_name=first_name.getText().toString();
+                    model.last_name=last_name.getText().toString();
+                    model.email=email.getText().toString();
+                    model.password=pass.getText().toString();
+                    Call<TextValue> result = ApiClient.getInterface().Register(model);
+                    result.enqueue(new Callback<TextValue>() {
+                        @Override
+                        public void onResponse(Call<TextValue> call, Response<TextValue> response) {
+                            if (response.isSuccessful()) {
+                                Toast.makeText(getContext(), response.body().value, Toast.LENGTH_LONG).show();
+
+                            } else {
+                                String message = "Xatolik yuz berdi. keyinroq yana urinib ko'rig";
+                                Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<TextValue> call, Throwable t) {
+
+                        }
+                    });
+                }
+                else {
+                    Toast.makeText(getContext(), "passwords do not match please try again", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
 
 
         return view;

@@ -6,6 +6,7 @@ import java.util.List;
 
 import complexprogrammer.uz.models.TextValue;
 import complexprogrammer.uz.ui.account.LoginViewModel;
+import complexprogrammer.uz.ui.account.SignUpViewModel;
 import complexprogrammer.uz.ui.news.NewsResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -18,4 +19,11 @@ public interface ApiInterface {
 
     @POST("Api/C0mplexApi/Login/")
     Call<TextValue> Login(@Body LoginViewModel model);
+
+    @POST("Api/C0mplexApi/Login/")
+    Call<TextValue> SignOut(@Body String email);
+
+    @POST("Api/C0mplexApi/Register/")
+    Call<TextValue> Register(@Body SignUpViewModel model);
+
 }

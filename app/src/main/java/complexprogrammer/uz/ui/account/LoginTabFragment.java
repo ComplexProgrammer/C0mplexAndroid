@@ -1,5 +1,7 @@
 package complexprogrammer.uz.ui.account;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,9 +28,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginTabFragment extends Fragment {
-    LoginAdapter adapter;
-    ViewPager viewPager;
-    TabLayout tabLayout;
 
     EditText email,pass;
     TextView forgetPass;
@@ -76,10 +75,8 @@ public class LoginTabFragment extends Fragment {
                     @Override
                     public void onResponse(Call<TextValue> call, Response<TextValue> response) {
                         if (response.isSuccessful()) {
-                            String message = "Yulanmoqda...";
-                            Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                            SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
                             Toast.makeText(getContext(), response.body().value, Toast.LENGTH_LONG).show();
-
 
                         } else {
                             String message = "Xatolik yuz berdi. keyinroq yana urinib ko'rig";
