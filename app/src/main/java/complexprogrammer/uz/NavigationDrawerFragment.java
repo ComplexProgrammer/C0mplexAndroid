@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -26,8 +25,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import complexprogrammer.uz.ui.AdminPanelFragment;
 import complexprogrammer.uz.ui.ContactFragment;
+import complexprogrammer.uz.ui.LanguageFragment;
 import complexprogrammer.uz.ui.account.LoginActivity;
+import complexprogrammer.uz.ui.account.LoginTabFragment;
+import complexprogrammer.uz.ui.account.MyAccountFragment;
 import complexprogrammer.uz.ui.home.HomeFragment;
 import complexprogrammer.uz.ui.news.NewsFragment;
 import complexprogrammer.uz.ui.online_games.TicTacToeFragment;
@@ -48,6 +51,8 @@ public class NavigationDrawerFragment extends Fragment {
     private View mFragmentContainerView;
 
     private int mCurrentSelectedPosition = 0;
+
+
 
 
     ArrayList<String> groupItem = new ArrayList<String>();
@@ -87,7 +92,7 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
-        expandableListDetail = complexprogrammer.uz.ExpandableListDataPump.getData();
+        expandableListDetail = complexprogrammer.uz.ExpandableListDataPump.getData(getContext());
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
 
 
@@ -137,6 +142,9 @@ public class NavigationDrawerFragment extends Fragment {
                 else if (groupPosition == ExpandableListAdapter.ITEM8) {
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent);
+//                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                    fragmentTransaction.replace(R.id.nav_host_fragment, new MyAccountFragment(1));
+//                    fragmentTransaction.commit();
 //                    ShowFragment(new LoginFragment());
                 }
                 return retVal;
@@ -200,6 +208,26 @@ public class NavigationDrawerFragment extends Fragment {
 
 
                 }
+               else if (groupPosition == complexprogrammer.uz.ExpandableListAdapter.ITEM7) {
+
+                    if (childPosition == complexprogrammer.uz.ExpandableListAdapter.SUBITEM4_1) {
+                        ShowFragment(new LanguageFragment());
+                    }
+                    else
+                    if (childPosition == complexprogrammer.uz.ExpandableListAdapter.SUBITEM4_2) {
+
+                        LoginTabFragment loginTabFragment=new LoginTabFragment();
+                        ShowFragment(new MyAccountFragment(loginTabFragment.getUserId(getActivity().getApplicationContext())));
+                    }
+                    else if (childPosition == complexprogrammer.uz.ExpandableListAdapter.SUBITEM4_3) {
+                        ShowFragment(new AdminPanelFragment());
+                    }
+                    //                    else if (childPosition == ExpandableListAdapter.SUBITEM2_4) {
+                    //
+                    //                        // call activity here
+                    //
+                    //                    }
+               }
                 return true;
             }
         });

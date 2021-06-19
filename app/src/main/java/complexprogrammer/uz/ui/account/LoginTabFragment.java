@@ -1,6 +1,7 @@
 package complexprogrammer.uz.ui.account;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,28 +9,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabLayout;
-
+import complexprogrammer.uz.MainActivity;
 import complexprogrammer.uz.R;
 import complexprogrammer.uz.models.TextValue;
 import complexprogrammer.uz.services.ApiClient;
-import complexprogrammer.uz.ui.news.NewsFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginTabFragment extends Fragment {
 
-    EditText email,pass;
+    private UserResponse userResponse;
+    TextView email,pass;
     TextView forgetPass;
     Button login;
     float v=0;
@@ -38,7 +37,14 @@ public class LoginTabFragment extends Fragment {
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
+    public Integer getUserId(Context c){
+        SharedPreferences pref = c.getSharedPreferences("C0mplexPref", Context.MODE_PRIVATE); // 0 - for private mode
+        return Integer.parseInt(pref.getString("user_id","0"));
+    }
+    public String getUserName(Context c){
+        SharedPreferences pref = c.getSharedPreferences("C0mplexPref", Context.MODE_PRIVATE); // 0 - for private mode
+        return pref.getString("user_name",null);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,8 +81,31 @@ public class LoginTabFragment extends Fragment {
                     @Override
                     public void onResponse(Call<TextValue> call, Response<TextValue> response) {
                         if (response.isSuccessful()) {
-                            SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-                            Toast.makeText(getContext(), response.body().value, Toast.LENGTH_LONG).show();
+
+                            try{
+                                Integer data=Integer.parseInt(response.body().value);
+                                Log.e("data",data.toString());
+                                //data = 0  -> xatolik
+                                //data = -1 -> login yoki parol noto'g'ri
+                                if(data==0){
+                                    Toast.makeText(getContext(),"Serverda xatoli yuz berdi" , Toast.LENGTH_LONG).show();
+                                }
+                                else
+                                {
+                                    if(data==-1){
+                                        Toast.makeText(getContext(),"Login yoki parol noto'g'ri kiritildi" , Toast.LENGTH_LONG).show();
+                                    }
+                                    else{
+                                        getUserById(data);
+                                    }
+                                }
+
+                            }
+                            catch(NumberFormatException ex) {
+                                Toast.makeText(getContext(),response.body().value , Toast.LENGTH_LONG).show();
+                            }
+
+
 
                         } else {
                             String message = "Xatolik yuz berdi. keyinroq yana urinib ko'rig";
@@ -95,6 +124,32 @@ public class LoginTabFragment extends Fragment {
             }
         });
         return view;
+    }
+    public void getUserById(Integer user_id){
+
+        Log.e("user_id",user_id.toString());
+        Call<UserResponse> user= ApiClient.getInterface().GetUserById(user_id);
+        user.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if(response.isSuccessful()){
+                    userResponse=response.body();
+                    SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("C0mplexPref", Context.MODE_PRIVATE); // 0 - for private mode
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("user_id", user_id.toString());
+                    editor.putString("user_name", userResponse.getFirst_name()+" "+userResponse.getLast_name());
+                    editor.commit();
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+//                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                    fragmentTransaction.replace(R.id.nav_host_fragment, new MyAccountFragment(user_id));
+//                    fragmentTransaction.commit();
+                }
+            }
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+
+            }
+        });
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

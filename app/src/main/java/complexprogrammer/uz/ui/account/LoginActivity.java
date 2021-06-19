@@ -20,7 +20,6 @@ public class LoginActivity extends AppCompatActivity {
     ViewPager viewPager;
     FloatingActionButton facebook,google,twitter;
     float v=0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

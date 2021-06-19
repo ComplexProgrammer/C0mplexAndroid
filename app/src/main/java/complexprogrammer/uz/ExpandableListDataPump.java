@@ -1,12 +1,16 @@
 package complexprogrammer.uz;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import complexprogrammer.uz.ui.account.LoginTabFragment;
+
 public class ExpandableListDataPump {
-    public static HashMap<String, List<String>> getData() {
+    public static HashMap<String, List<String>> getData(Context c) {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
 
         List<String> menu1 = new ArrayList<String>();
@@ -29,8 +33,13 @@ public class ExpandableListDataPump {
 
         List<String> list7 = new ArrayList<String>();
         list7.add("Language");
-        list7.add("My Account");
-        list7.add("Control");
+        LoginTabFragment loginTabFragment=new LoginTabFragment();
+        MainActivity activity=new MainActivity();
+        if (loginTabFragment.getUserId(c) != null) {
+            list7.add("My Account");
+            list7.add("Control");
+            }
+
 
         List<String> menu8 = new ArrayList<String>();
         expandableListDetail.put("Home", menu1);

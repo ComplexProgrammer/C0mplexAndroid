@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import complexprogrammer.uz.ui.account.LoginTabFragment;
 import complexprogrammer.uz.ui.gallery.GalleryFragment;
 import complexprogrammer.uz.ui.home.HomeFragment;
 import complexprogrammer.uz.ui.news.NewsFragment;
@@ -54,10 +55,15 @@ public class MainActivity extends AppCompatActivity  implements NavigationDrawer
         ShowFragment(R.id.nav_home);
 
 
+
+
+        LoginTabFragment fragment=new LoginTabFragment();
+        if (fragment.getUserId(getApplicationContext()) != 0) {
+            Toast.makeText(this, fragment.getUserName(getApplicationContext()), Toast.LENGTH_LONG).show();
+        }
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
