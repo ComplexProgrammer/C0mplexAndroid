@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import java.text.ParseException;
-import java.util.Date;
 
 import complexprogrammer.uz.R;
 import complexprogrammer.uz.services.ApiClient;
@@ -85,32 +84,37 @@ public class MyAccountFragment extends Fragment {
 
                     String dtStart = "2010-10-15T09:27:37";
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                    SimpleDateFormat myFormat = new SimpleDateFormat("dd.MM.yyy HH:mm:ss");
                     try {
-
-                        Date date = format.parse(userResponse.getReg_date());
-                        SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                        String date2 = format2.format(Date.parse(userResponse.getReg_date()));
-//                        Date date = format.parse(dtStart);
-                        reg_date.setText(date2.toString());
+                        if(userResponse.getReg_date()!=null){
+                            reg_date.setText(myFormat.format(format.parse(userResponse.getReg_date())));
+                        }
 
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
                     try {
-                        reg_date.setText(format.parse(userResponse.getReg_date()).toString());
+                        if(userResponse.getChange_date()!=null){
+                            change_date.setText(myFormat.format(format.parse(userResponse.getChange_date())));
+
+                        }
 
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
                     try {
-                        last_access_date.setText(format.parse(userResponse.getLast_access_date()).toString());
+                        if(userResponse.getLast_access_date()!=null){
+                            last_access_date.setText(myFormat.format(format.parse(userResponse.getLast_access_date())));
 
+                        }
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
                     try {
-                        last_release_date.setText(format.parse(userResponse.getLast_release_date()).toString());
+                        if(userResponse.getLast_release_date()!=null){
+                            last_release_date.setText(myFormat.format(format.parse(userResponse.getLast_release_date())));
 
+                        }
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
