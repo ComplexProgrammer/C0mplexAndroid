@@ -21,8 +21,8 @@ public interface ApiInterface {
     @POST("Api/C0mplexApi/Login/")
     Call<TextValue> Login(@Body LoginViewModel model);
 
-    @POST("Api/C0mplexApi/Login/")
-    Call<TextValue> SignOut(@Body String email);
+    @POST("Api/C0mplexApi/SignOut/")
+    Call<TextValue> SignOut(@Query("user_id") int user_id);
 
     @POST("Api/C0mplexApi/Register/")
     Call<TextValue> Register(@Body SignUpViewModel model);

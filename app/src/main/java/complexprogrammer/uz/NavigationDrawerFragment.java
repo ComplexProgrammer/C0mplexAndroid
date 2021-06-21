@@ -30,6 +30,7 @@ import complexprogrammer.uz.ui.ContactFragment;
 import complexprogrammer.uz.ui.LanguageFragment;
 import complexprogrammer.uz.ui.account.LoginActivity;
 import complexprogrammer.uz.ui.account.LoginTabFragment;
+import complexprogrammer.uz.ui.account.LogoffFragment;
 import complexprogrammer.uz.ui.account.MyAccountFragment;
 import complexprogrammer.uz.ui.home.HomeFragment;
 import complexprogrammer.uz.ui.news.NewsFragment;
@@ -52,7 +53,8 @@ public class NavigationDrawerFragment extends Fragment {
 
     private int mCurrentSelectedPosition = 0;
 
-
+    private LoginTabFragment loginTabFragment=new LoginTabFragment();
+    private static Integer user_id;
 
 
     ArrayList<String> groupItem = new ArrayList<String>();
@@ -62,6 +64,7 @@ public class NavigationDrawerFragment extends Fragment {
     HashMap<String, List<String>> expandableListDetail;
 
     public NavigationDrawerFragment() {
+
     }
 
     @Override
@@ -82,7 +85,7 @@ public class NavigationDrawerFragment extends Fragment {
                              Bundle savedInstanceState) {
 //        ActionBar actionBar = getActionBar();
 //        actionBar.hide();
-
+        user_id=loginTabFragment.getUserId(getContext());
         mDrawerListView = (ExpandableListView) inflater.inflate(
                 R.layout.drawer_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -140,12 +143,14 @@ public class NavigationDrawerFragment extends Fragment {
 
                 }
                 else if (groupPosition == ExpandableListAdapter.ITEM8) {
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    startActivity(intent);
-//                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                    fragmentTransaction.replace(R.id.nav_host_fragment, new MyAccountFragment(1));
-//                    fragmentTransaction.commit();
-//                    ShowFragment(new LoginFragment());
+
+                    if (user_id.equals(0)){
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(intent);
+                    }else {
+                    ShowFragment(new LogoffFragment(user_id));
+                    }
+
                 }
                 return retVal;
             }
@@ -216,8 +221,8 @@ public class NavigationDrawerFragment extends Fragment {
                     else
                     if (childPosition == complexprogrammer.uz.ExpandableListAdapter.SUBITEM4_2) {
 
-                        LoginTabFragment loginTabFragment=new LoginTabFragment();
-                        ShowFragment(new MyAccountFragment(loginTabFragment.getUserId(getActivity().getApplicationContext())));
+
+                        ShowFragment(new MyAccountFragment(user_id));
                     }
                     else if (childPosition == complexprogrammer.uz.ExpandableListAdapter.SUBITEM4_3) {
                         ShowFragment(new AdminPanelFragment());

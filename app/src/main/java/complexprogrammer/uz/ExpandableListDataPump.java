@@ -32,22 +32,35 @@ public class ExpandableListDataPump {
         List<String> menu6 = new ArrayList<String>();
 
         List<String> list7 = new ArrayList<String>();
+        List<String> menu8 = new ArrayList<String>();
         list7.add("Language");
         LoginTabFragment loginTabFragment=new LoginTabFragment();
         MainActivity activity=new MainActivity();
-        if (loginTabFragment.getUserId(c) != 0) {
+        if (loginTabFragment.getUserId(c).equals(0)) {
+            expandableListDetail.put("Home", menu1);
+            expandableListDetail.put("News", menu2);
+            expandableListDetail.put("Online games", list3);
+            expandableListDetail.put("Services", list4);
+            expandableListDetail.put("Tutorials", list5);
+            expandableListDetail.put("Contact", menu6);
+            expandableListDetail.put("Sttings", list7);
+            expandableListDetail.put("Log in", menu8);
+            }
+        else {
             list7.add("My Account");
             list7.add("Control");
-            }
-        List<String> menu8 = new ArrayList<String>();
-        expandableListDetail.put("Home", menu1);
-        expandableListDetail.put("News", menu2);
-        expandableListDetail.put("Online games", list3);
-        expandableListDetail.put("Services", list4);
-        expandableListDetail.put("Tutorials", list5);
-        expandableListDetail.put("Contact", menu6);
-        expandableListDetail.put("Sttings", list7);
-        expandableListDetail.put("Log in", menu8);
+            expandableListDetail.put("Home", menu1);
+            expandableListDetail.put("News", menu2);
+            expandableListDetail.put("Online games", list3);
+            expandableListDetail.put("Services", list4);
+            expandableListDetail.put("Tutorials", list5);
+            expandableListDetail.put("Contact", menu6);
+            expandableListDetail.put("Sttings", list7);
+            expandableListDetail.put("Log off", menu8);
+        }
+
+
+
 
 
         return expandableListDetail;

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24dp"
-        android:textColor="@color/IndianRed"
+        android:textColor="@color/MediumVioletRed"
         app:layout_constraintVertical_bias=".2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
