@@ -35,12 +35,10 @@ public class ExpandableListDataPump {
         list7.add("Language");
         LoginTabFragment loginTabFragment=new LoginTabFragment();
         MainActivity activity=new MainActivity();
-        if (loginTabFragment.getUserId(c) != null) {
+        if (loginTabFragment.getUserId(c) != 0) {
             list7.add("My Account");
             list7.add("Control");
             }
-
-
         List<String> menu8 = new ArrayList<String>();
         expandableListDetail.put("Home", menu1);
         expandableListDetail.put("News", menu2);

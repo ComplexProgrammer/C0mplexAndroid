@@ -82,7 +82,7 @@ public class MyAccountFragment extends Fragment {
                     login.setText(userResponse.getLogin());
                     visit_count.setText(userResponse.getVisit_count());
 
-                    String dtStart = "2010-10-15T09:27:37";
+
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                     SimpleDateFormat myFormat = new SimpleDateFormat("dd.MM.yyy HH:mm:ss");
                     try {

@@ -1,6 +1,8 @@
 package complexprogrammer.uz.ui.account;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +20,13 @@ import org.jetbrains.annotations.NotNull;
 import complexprogrammer.uz.R;
 import complexprogrammer.uz.models.TextValue;
 import complexprogrammer.uz.services.ApiClient;
+import complexprogrammer.uz.ui.news.NewsViewByIdActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignupTabFragment extends Fragment {
+    private SignUpViewModel model=new SignUpViewModel();
     TextView first_name,last_name, email,pass,pass2;
     Button sign_up;
     float v=0;
@@ -62,8 +66,9 @@ public class SignupTabFragment extends Fragment {
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(pass.getText()==pass2.getText()){
-                    SignUpViewModel model=new SignUpViewModel();
+                Log.e("pass :",pass.getText().toString());
+                Log.e("pass :",pass2.getText().toString());
+                if(pass.getText().toString().equals(pass2.getText().toString())){
                     model.first_name=first_name.getText().toString();
                     model.last_name=last_name.getText().toString();
                     model.email=email.getText().toString();
@@ -73,7 +78,19 @@ public class SignupTabFragment extends Fragment {
                         @Override
                         public void onResponse(Call<TextValue> call, Response<TextValue> response) {
                             if (response.isSuccessful()) {
-                                Toast.makeText(getContext(), response.body().value, Toast.LENGTH_LONG).show();
+                                if(response.body().value.equals("0")){
+                                    Toast.makeText(getContext(),"Serverda xatoli yuz berdi" , Toast.LENGTH_LONG).show();
+                                }else
+                                {
+                                    if(response.body().value.equals("1")){
+                                        Intent intent = new Intent(getActivity(), NotifRegistrationActivity.class).putExtra("data",model.first_name+" "+model.last_name);
+                                        startActivity(intent);
+                                    }else {
+                                        Toast.makeText(getContext(), response.body().value, Toast.LENGTH_LONG).show();
+
+                                    }
+                                }
+
 
                             } else {
                                 String message = "Xatolik yuz berdi. keyinroq yana urinib ko'rig";
