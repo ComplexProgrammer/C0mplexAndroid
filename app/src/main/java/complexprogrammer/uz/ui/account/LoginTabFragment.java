@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,13 +18,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import complexprogrammer.uz.MainActivity;
 import complexprogrammer.uz.R;
 import complexprogrammer.uz.models.TextValue;
 import complexprogrammer.uz.services.ApiClient;
+import complexprogrammer.uz.services.Validation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,7 +33,9 @@ import retrofit2.Response;
 public class LoginTabFragment extends Fragment {
 
     private UserResponse userResponse;
-    EditText email,pass;
+    EditText email;
+    TextInputLayout pass;
+    TextInputEditText password;
     TextView forgetPass,email_error,pass_error;
     Button login;
     float v=0;
@@ -60,22 +60,26 @@ public class LoginTabFragment extends Fragment {
         email=view.findViewById(R.id.email);
         email_error=view.findViewById(R.id.email_error);
         pass=view.findViewById(R.id.pass);
+        password=view.findViewById(R.id.password);
         pass_error=view.findViewById(R.id.pass_error);
         forgetPass=view.findViewById(R.id.forget_pass);
         login=view.findViewById(R.id.login);
 
         email.setTranslationX(800);
         pass.setTranslationX(800);
+        password.setTranslationX(800);
         forgetPass.setTranslationX(800);
         login.setTranslationX(800);
 
         email.setAlpha(v);
         pass.setAlpha(v);
+        password.setAlpha(v);
         forgetPass.setAlpha(v);
         login.setAlpha(v);
 
         email.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
         pass.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+        password.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
         forgetPass.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
         login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
 
@@ -83,24 +87,18 @@ public class LoginTabFragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!isValidEmail(email.getText())){
-                    email_error.setTextColor(Color.parseColor("#FF0000"));
-                    email_error.setText("Email address noto'g'ri farmatda");
-                    Toast.makeText(getContext(),email_error.getText() , Toast.LENGTH_LONG).show();
-
-                }else {
+                if(Validation.isValidEmail(email.getText())){
                     email_error.setTextColor(Color.parseColor("#00FF00"));
-                    email_error.setText("Email address to'g'ri farmatda");
-                    if (!isValidPassword(pass.getText().toString())) {
+                    email_error.setText("Elektron pochta manzili to‘g‘ri");
+                    if(password.getText().toString().isEmpty()){
                         pass_error.setTextColor(Color.parseColor("#FF0000"));
-                        pass_error.setText("Password error");
-
-                    }else{
-                        pass_error.setTextColor(Color.parseColor("#00FF00"));
-
+                        pass_error.setText("Parol kiritilmadi");
+                    }
+                    else {
+                        pass_error.setText("");
                         LoginViewModel loginViewModel = new LoginViewModel();
                         loginViewModel.email = email.getText().toString();
-                        loginViewModel.password = pass.getText().toString();
+                        loginViewModel.password = password.getText().toString();
                         Call<TextValue> result = ApiClient.getInterface().Login(loginViewModel);
                         result.enqueue(new Callback<TextValue>() {
                             @Override
@@ -147,19 +145,19 @@ public class LoginTabFragment extends Fragment {
                             }
                         });
                     }
+
+                }else {
+                    email_error.setTextColor(Color.parseColor("#FF0000"));
+                    email_error.setText("Elektron pochta manzili noto‘g‘ri");
+                    Toast.makeText(getContext(),email_error.getText() , Toast.LENGTH_LONG).show();
+
                 }
 
             }
         });
         return view;
     }
-    public static boolean isValidEmail(CharSequence target) {
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
-    }
-    public static boolean isValidPassword(String password) {
-        Matcher matcher = Pattern.compile("((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{4,20})").matcher(password);
-        return matcher.matches();
-    }
+
     public void getUserById(Integer user_id){
 
         Log.e("user_id",user_id.toString());

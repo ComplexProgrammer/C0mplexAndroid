@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 facebook.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
                 google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
                 twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(800).start();
+
                 viewPager.setAdapter(adapter);
                 viewPager.setCurrentItem(tab.getPosition());
 
