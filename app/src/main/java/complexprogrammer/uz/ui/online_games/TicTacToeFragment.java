@@ -144,7 +144,7 @@ private TextView textViewPlayer2;
 
             }
         }
-        roundCount++;
+        roundCount=0;
         player1Turn=true;
     }
     private void resetGame(){
