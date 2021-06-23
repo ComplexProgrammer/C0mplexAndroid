@@ -13,6 +13,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/alert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Red"
+                app:layout_constraintBottom_toTopOf="@+id/first_name"
+                app:layout_constraintEnd_toEndOf="@+id/first_name"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/first_name"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+
             <EditText
                 android:id="@+id/first_name"
                 android:layout_width="0dp"
@@ -30,6 +42,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 />
+
+            <TextView
+                android:id="@+id/fn_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Red"
+                app:layout_constraintBottom_toTopOf="@+id/last_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="@+id/first_name"
+                app:layout_constraintTop_toBottomOf="@+id/first_name"
+                app:layout_constraintVertical_bias="0.0" />
             <EditText
                 android:id="@+id/last_name"
                 android:layout_width="0dp"
@@ -49,6 +73,18 @@
                 app:layout_constraintWidth_percent=".8"
 
                 />
+
+            <TextView
+                android:id="@+id/ln_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Red"
+                app:layout_constraintBottom_toTopOf="@+id/email"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="@+id/last_name"
+                app:layout_constraintTop_toBottomOf="@+id/last_name"
+                app:layout_constraintVertical_bias="0.0" />
             <EditText
                 android:id="@+id/email"
                 android:layout_width="0dp"
@@ -68,15 +104,28 @@
                 app:layout_constraintWidth_percent=".8"
                 />
 
-            <EditText
+            <TextView
+                android:id="@+id/email_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Red"
+                app:layout_constraintBottom_toTopOf="@+id/pass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="@+id/email"
+                app:layout_constraintTop_toBottomOf="@+id/email"
+                app:layout_constraintVertical_bias="0.0" />
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/pass"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Password"
-                android:paddingLeft="20dp"
-                android:background="@drawable/edit_text_bg"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/colorAccent"
+                app:shapeAppearance="@style/Rounded"
+
+                android:hint="Enter password"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintVertical_bias="0"
@@ -84,17 +133,40 @@
                 app:layout_constraintHorizontal_bias=".5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email"
-                app:layout_constraintWidth_percent=".8"
-                />
-            <EditText
+                app:layout_constraintWidth_percent=".8" >
+
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/pass_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Red"
+                app:layout_constraintBottom_toTopOf="@+id/pass2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="@+id/pass"
+                app:layout_constraintTop_toBottomOf="@+id/pass"
+                app:layout_constraintVertical_bias="0.0" />
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/pass2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/colorAccent"
+                app:shapeAppearance="@style/Rounded"
                 android:hint="Confirm Password"
-                android:paddingLeft="20dp"
-                android:background="@drawable/edit_text_bg"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintVertical_bias="0"
@@ -102,8 +174,30 @@
                 app:layout_constraintHorizontal_bias=".5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pass"
-                app:layout_constraintWidth_percent=".8" />
+                app:layout_constraintWidth_percent=".8" >
 
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/pass2_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Red"
+                app:layout_constraintBottom_toTopOf="@+id/sign_up"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="@+id/pass2"
+                app:layout_constraintTop_toBottomOf="@+id/pass2"
+                app:layout_constraintVertical_bias="0.0" />
             <Button
                 android:id="@+id/sign_up"
                 android:layout_width="0dp"

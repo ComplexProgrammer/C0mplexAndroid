@@ -36,7 +36,7 @@ public class LoginTabFragment extends Fragment {
     EditText email;
     TextInputLayout pass;
     TextInputEditText password;
-    TextView forgetPass,email_error,pass_error;
+    TextView forgetPass,email_error,pass_error,alert;
     Button login;
     float v=0;
 
@@ -57,6 +57,7 @@ public class LoginTabFragment extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.login_tab_fragment,container,false);
 
+        alert=view.findViewById(R.id.alert);
         email=view.findViewById(R.id.email);
         email_error=view.findViewById(R.id.email_error);
         pass=view.findViewById(R.id.pass);
@@ -65,21 +66,22 @@ public class LoginTabFragment extends Fragment {
         forgetPass=view.findViewById(R.id.forget_pass);
         login=view.findViewById(R.id.login);
 
+
         email.setTranslationX(800);
         pass.setTranslationX(800);
-        password.setTranslationX(800);
+//        password.setTranslationX(800);
         forgetPass.setTranslationX(800);
         login.setTranslationX(800);
 
         email.setAlpha(v);
         pass.setAlpha(v);
-        password.setAlpha(v);
+//        password.setAlpha(v);
         forgetPass.setAlpha(v);
         login.setAlpha(v);
 
         email.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
         pass.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
-        password.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+//        password.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
         forgetPass.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
         login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
 
@@ -87,72 +89,75 @@ public class LoginTabFragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Validation.isValidEmail(email.getText())){
-                    email_error.setTextColor(Color.parseColor("#00FF00"));
-                    email_error.setText("Elektron pochta manzili to‘g‘ri");
-                    if(password.getText().toString().isEmpty()){
-                        pass_error.setTextColor(Color.parseColor("#FF0000"));
-                        pass_error.setText("Parol kiritilmadi");
+                boolean email_valid=false,pass_valid=false;
+                if(email.getText().toString().isEmpty()){
+                    email_valid=false;
+                    email_error.setText("Elektron pochta manzili kiritilmadi");
+                }
+                else {
+                    if(Validation.isValidEmail(email.getText())){
+                        email_valid=true;
+                        email_error.setText("");
+
                     }
                     else {
-                        pass_error.setText("");
-                        LoginViewModel loginViewModel = new LoginViewModel();
-                        loginViewModel.email = email.getText().toString();
-                        loginViewModel.password = password.getText().toString();
-                        Call<TextValue> result = ApiClient.getInterface().Login(loginViewModel);
-                        result.enqueue(new Callback<TextValue>() {
-                            @Override
-                            public void onResponse(Call<TextValue> call, Response<TextValue> response) {
-                                if (response.isSuccessful()) {
-
-                                    try{
-                                        Integer data=Integer.parseInt(response.body().value);
-                                        Log.e("data",data.toString());
-                                        //data = 0  -> xatolik
-                                        //data = -1 -> login yoki parol noto'g'ri
-                                        if(data==0){
-                                            Toast.makeText(getContext(),"Serverda xatoli yuz berdi" , Toast.LENGTH_LONG).show();
-                                        }
-                                        else
-                                        {
-                                            if(data==-1){
-                                                Toast.makeText(getContext(),"Login yoki parol noto'g'ri kiritildi" , Toast.LENGTH_LONG).show();
-                                            }
-                                            else{
-                                                getUserById(data);
-                                            }
-                                        }
-
-                                    }
-                                    catch(NumberFormatException ex) {
-                                        Toast.makeText(getContext(),response.body().value , Toast.LENGTH_LONG).show();
-                                    }
-
-
-
-                                } else {
-                                    String message = "Xatolik yuz berdi. keyinroq yana urinib ko'rig";
-                                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<TextValue> call, Throwable t) {
-                                Log.e("onFailure", call.toString());
-
-                                String message = t.getLocalizedMessage();
-                                Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
-                            }
-                        });
+                        email_valid=false;
+                        email_error.setText("Elektron pochta manzili noto‘g‘ri");
                     }
-
-                }else {
-                    email_error.setTextColor(Color.parseColor("#FF0000"));
-                    email_error.setText("Elektron pochta manzili noto‘g‘ri");
-                    Toast.makeText(getContext(),email_error.getText() , Toast.LENGTH_LONG).show();
-
                 }
+                if(password.getText().toString().isEmpty()){
+                    pass_valid=false;
+                    pass_error.setText("Parol kiritilmadi");
+                }
+                else {
+                    pass_valid=true;
+                    pass_error.setText("");
+                }
+                if(email_valid&&pass_valid){
+                    LoginViewModel loginViewModel = new LoginViewModel();
+                    loginViewModel.email = email.getText().toString();
+                    loginViewModel.password = password.getText().toString();
+                    Call<TextValue> result = ApiClient.getInterface().Login(loginViewModel);
+                    result.enqueue(new Callback<TextValue>() {
+                        @Override
+                        public void onResponse(Call<TextValue> call, Response<TextValue> response) {
+                            if (response.isSuccessful()) {
+                                try{
+                                    Integer data=Integer.parseInt(response.body().value);
+                                    Log.e("data",data.toString());
+                                    //data = 0  -> xatolik
+                                    //data = -1 -> login yoki parol noto'g'ri
+                                    if(data==0){
+                                        alert.setText("Serverda xatoli yuz berdi");
+                                    }
+                                    else
+                                    {
+                                        if(data==-1){
+                                            alert.setText("Login yoki parol noto'g'ri kiritildi");
+                                        }
+                                        else{
+                                            getUserById(data);
+                                        }
+                                    }
+                                }
+                                catch(NumberFormatException ex) {
+                                    alert.setText(response.body().value);
 
+                                }
+                            } else {
+                                String message = "Xatolik yuz berdi. keyinroq yana urinib ko'rig";
+                                alert.setText(message);
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<TextValue> call, Throwable t) {
+                            Log.e("onFailure", call.toString());
+
+                            String message = t.getLocalizedMessage();
+                            Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
             }
         });
         return view;

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,19 +16,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
 import org.jetbrains.annotations.NotNull;
 
 import complexprogrammer.uz.R;
 import complexprogrammer.uz.models.TextValue;
 import complexprogrammer.uz.services.ApiClient;
+import complexprogrammer.uz.services.Validation;
 import complexprogrammer.uz.ui.news.NewsViewByIdActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignupTabFragment extends Fragment {
-    private SignUpViewModel model=new SignUpViewModel();
-    TextView first_name,last_name, email,pass,pass2;
+    TextInputLayout pass,pass2;
+    TextInputEditText password,password2;
+    EditText first_name,last_name, email;
+    TextView fn_error,ln_error,email_error,pass_error,pass2_error,alert;
     Button sign_up;
     float v=0;
     @Override
@@ -39,8 +46,18 @@ public class SignupTabFragment extends Fragment {
         last_name=view.findViewById(R.id.last_name);
         email=view.findViewById(R.id.email);
         pass=view.findViewById(R.id.pass);
+        password=view.findViewById(R.id.password);
         pass2=view.findViewById(R.id.pass2);
+        password2=view.findViewById(R.id.password2);
         sign_up=view.findViewById(R.id.sign_up);
+
+        alert=view.findViewById(R.id.alert);
+        fn_error=view.findViewById(R.id.fn_error);
+        ln_error=view.findViewById(R.id.ln_error);
+        email_error=view.findViewById(R.id.email_error);
+        pass_error=view.findViewById(R.id.pass_error);
+        pass2_error=view.findViewById(R.id.pass2_error);
+
 
         first_name.setTranslationX(800);
         last_name.setTranslationX(800);
@@ -66,19 +83,81 @@ public class SignupTabFragment extends Fragment {
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("pass :",pass.getText().toString());
-                Log.e("pass :",pass2.getText().toString());
-                if(pass.getText().toString().equals(pass2.getText().toString())){
+                boolean fn_valid=false,ln_valid=false,email_valid=false,pass_valid=false,pass2_valid=false;
+                if(first_name.getText().toString().isEmpty()){
+                    fn_valid=false;
+                    fn_error.setText("Ism kiritilmadi");
+                }
+                else {
+                    fn_valid=true;
+                    fn_error.setText("");
+                }
+                if(last_name.getText().toString().isEmpty()){
+                    ln_valid=false;
+                    ln_error.setText("Familya kiritilmadi");
+                }
+                else {
+                    ln_valid=true;
+                    ln_error.setText("");
+                }
+                if(email.getText().toString().isEmpty()){
+                    email_valid=false;
+                    email_error.setText("Elektron pochta manzili kiritilmadi");
+                }
+                else {
+                    if(Validation.isValidEmail(email.getText())){
+                        email_valid=true;
+                        email_error.setText("");
+
+                    }
+                    else {
+                        email_valid=false;
+                        email_error.setText("Elektron pochta manzili noto‘g‘ri");
+                    }
+                }
+                if(password.getText().toString().isEmpty()){
+                    pass_valid=false;
+                    pass_error.setText("Parol kiritilmadi");
+                }
+                else {
+                    pass_valid=true;
+                    pass_error.setText("");
+                }
+                if(password2.getText().toString().isEmpty()){
+                    pass2_valid=false;
+                    pass2_error.setText("Takroriy parol kiritilmadi");
+                }
+                else {
+                    pass2_valid=true;
+                    pass2_error.setText("");
+                }
+                if(pass_valid&&pass2_valid){
+                    if(password.getText().toString().equals(password2.getText().toString())){
+                        pass_valid=true;
+                        pass2_valid=true;
+                        pass_error.setText("");
+                        pass2_error.setText("");
+                    }
+                    else {
+                        pass_valid=false;
+                        pass2_valid=false;
+                        pass_error.setText("parollar mos kelmadi");
+                        pass2_error.setText("parollar mos kelmadi");
+                    }
+                }
+                if(fn_valid&&ln_valid&&email_valid&&pass_valid&&pass2_valid){
+                    SignUpViewModel model=new SignUpViewModel();
                     model.first_name=first_name.getText().toString();
                     model.last_name=last_name.getText().toString();
                     model.email=email.getText().toString();
-                    model.password=pass.getText().toString();
+                    model.password=password.getText().toString();
                     Call<TextValue> result = ApiClient.getInterface().Register(model);
                     result.enqueue(new Callback<TextValue>() {
                         @Override
                         public void onResponse(Call<TextValue> call, Response<TextValue> response) {
                             if (response.isSuccessful()) {
                                 if(response.body().value.equals("0")){
+                                    alert.setText("Serverda xatoli yuz berdi");
                                     Toast.makeText(getContext(),"Serverda xatoli yuz berdi" , Toast.LENGTH_LONG).show();
                                 }else
                                 {
@@ -86,15 +165,14 @@ public class SignupTabFragment extends Fragment {
                                         Intent intent = new Intent(getActivity(), NotifRegistrationActivity.class).putExtra("data",model.first_name+" "+model.last_name);
                                         startActivity(intent);
                                     }else {
-                                        Toast.makeText(getContext(), response.body().value, Toast.LENGTH_LONG).show();
-
+                                        alert.setText(response.body().value);
                                     }
                                 }
 
 
                             } else {
                                 String message = "Xatolik yuz berdi. keyinroq yana urinib ko'rig";
-                                Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                                alert.setText(message);
                             }
                         }
 
@@ -103,9 +181,6 @@ public class SignupTabFragment extends Fragment {
 
                         }
                     });
-                }
-                else {
-                    Toast.makeText(getContext(), "passwords do not match please try again", Toast.LENGTH_LONG).show();
                 }
 
             }
