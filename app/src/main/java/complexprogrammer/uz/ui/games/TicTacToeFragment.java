@@ -1,4 +1,4 @@
-package complexprogrammer.uz.ui.online_games;
+package complexprogrammer.uz.ui.games;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

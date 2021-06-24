@@ -19,7 +19,7 @@ import complexprogrammer.uz.ui.account.LoginTabFragment;
 import complexprogrammer.uz.ui.gallery.GalleryFragment;
 import complexprogrammer.uz.ui.home.HomeFragment;
 import complexprogrammer.uz.ui.news.NewsFragment;
-import complexprogrammer.uz.ui.online_games.TicTacToeFragment;
+import complexprogrammer.uz.ui.games.TicTacToeFragment;
 
 public class MainActivity extends AppCompatActivity  implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 

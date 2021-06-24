@@ -12,14 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.C0mplex"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.online_games.FlyActivity"
-            android:theme="@style/AppTheme.noActionBar"
-            android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ui.games.FlyGameActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.noActionBar">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.games.FlyActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.noActionBar">
         </activity>
         <activity android:name=".ui.account.NotifRegistrationActivity" />
         <activity android:name=".SplashScreenActivity">

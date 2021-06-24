@@ -18,6 +18,7 @@ public class ExpandableListDataPump {
 
         List<String> list3 = new ArrayList<String>();
         list3.add("Tic Tac Toe");
+        list3.add("Fly");
 
 
         List<String> list4 = new ArrayList<String>();
@@ -39,7 +40,7 @@ public class ExpandableListDataPump {
         if (loginTabFragment.getUserId(c).equals(0)) {
             expandableListDetail.put("Home", menu1);
             expandableListDetail.put("News", menu2);
-            expandableListDetail.put("Online games", list3);
+            expandableListDetail.put("Games", list3);
             expandableListDetail.put("Services", list4);
             expandableListDetail.put("Tutorials", list5);
             expandableListDetail.put("Contact", menu6);

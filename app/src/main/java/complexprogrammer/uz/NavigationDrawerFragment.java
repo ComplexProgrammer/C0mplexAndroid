@@ -32,9 +32,10 @@ import complexprogrammer.uz.ui.account.LoginActivity;
 import complexprogrammer.uz.ui.account.LoginTabFragment;
 import complexprogrammer.uz.ui.account.LogoffFragment;
 import complexprogrammer.uz.ui.account.MyAccountFragment;
+import complexprogrammer.uz.ui.games.FlyActivity;
 import complexprogrammer.uz.ui.home.HomeFragment;
 import complexprogrammer.uz.ui.news.NewsFragment;
-import complexprogrammer.uz.ui.online_games.TicTacToeFragment;
+import complexprogrammer.uz.ui.games.TicTacToeFragment;
 import complexprogrammer.uz.ui.services.ChangeTextFragment;
 import complexprogrammer.uz.ui.services.CompressImageFragment;
 import complexprogrammer.uz.ui.services.GuidFragment;
@@ -177,11 +178,11 @@ public class NavigationDrawerFragment extends Fragment {
                     if (childPosition == ExpandableListAdapter.SUBITEM1_1) {
                         ShowFragment(new TicTacToeFragment());
                     }
-//                    else if (childPosition == ExpandableListAdapter.SUBITEM1_2) {
-//
-//                        // call activity here
-//
-//                    }
+                    else if (childPosition == ExpandableListAdapter.SUBITEM1_2) {
+                            startActivity(new Intent(getActivity(), FlyActivity.class));
+                        // call activity here
+
+                    }
 //                    else if (childPosition == ExpandableListAdapter.SUBITEM1_3) {
 //
 //                        // call activity here

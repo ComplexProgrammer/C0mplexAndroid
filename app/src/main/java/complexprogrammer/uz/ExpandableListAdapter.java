@@ -27,7 +27,7 @@ public class ExpandableListAdapter  extends BaseExpandableListAdapter {
 
 
     public static int SUBITEM1_1 = 0;
-//    public static int SUBITEM1_2 = 1;
+    public static int SUBITEM1_2 = 1;
 //    public static int SUBITEM1_3 = 2;
 //    public static int SUBITEM1_4 = 3;
 
