@@ -1,7 +1,5 @@
 package complexprogrammer.uz.ui.games;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +7,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import complexprogrammer.uz.R;
 
@@ -28,7 +28,7 @@ public class FlyActivity extends AppCompatActivity {
         });
         TextView textView=findViewById(R.id.highScoreTxt);
         SharedPreferences preferences=getSharedPreferences("FlyGame",MODE_PRIVATE);
-        textView.setText("HighScore "+preferences.getInt("highscore",0));
+        textView.setText("Yuqori ball : "+preferences.getInt("highscore",0));
         isMute=preferences.getBoolean("isMute",false);
         ImageView imageView=findViewById(R.id.volumeCtrl);
         if(isMute){

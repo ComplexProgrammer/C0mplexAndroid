@@ -11,14 +11,12 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
-import android.view.ActionMode;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.CancellationException;
 
 import complexprogrammer.uz.R;
 
