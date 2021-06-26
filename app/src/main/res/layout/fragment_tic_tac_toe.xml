@@ -12,14 +12,14 @@
         <TextView
             android:id="@+id/text_view_p1"
             android:layout_width="wrap_content"
-            android:text="1 - o'yinchi: 0"
+            android:text="@string/player_1"
             android:textSize="30sp"
             android:freezesText="true"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/text_view_p2"
             android:layout_width="wrap_content"
-            android:text="2 - o'yinchi: 0"
+            android:text="@string/player_2"
             android:layout_below="@id/text_view_p1"
             android:textSize="30sp"
             android:freezesText="true"
@@ -30,7 +30,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="33dp"
-            android:text="Yangilash"
+            android:text="@string/restart"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
     <LinearLayout

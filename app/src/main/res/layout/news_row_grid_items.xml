@@ -28,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="C0mplex"/>
+        android:text="@string/c0mplex"/>
 </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -17,47 +17,47 @@ public class ExpandableListDataPump {
         List<String> menu2 = new ArrayList<String>();
 
         List<String> list3 = new ArrayList<String>();
-        list3.add("Tic Tac Toe");
-        list3.add("Fly");
+        list3.add(c.getString(R.string.menu_tic_tac_toe));
+        list3.add(c.getString(R.string.menu_fly));
 
 
         List<String> list4 = new ArrayList<String>();
-        list4.add("GUID creation");
-        list4.add("Latin  Cyrillic");
-        list4.add("Image");
+        list4.add(c.getString(R.string.menu_guid));
+        list4.add(c.getString(R.string.menu_change_text));
+        list4.add(c.getString(R.string.menu_image));
 
         List<String> list5 = new ArrayList<String>();
-        list5.add("Android studio");
-        list5.add("Xamarin");
+        list5.add(c.getString(R.string.android_studi));
+        list5.add(c.getString(R.string.xamarin));
 
         List<String> menu6 = new ArrayList<String>();
 
         List<String> list7 = new ArrayList<String>();
         List<String> menu8 = new ArrayList<String>();
-        list7.add("Language");
+        list7.add(c.getString(R.string.menu_language));
         LoginTabFragment loginTabFragment=new LoginTabFragment();
         MainActivity activity=new MainActivity();
         if (loginTabFragment.getUserId(c).equals(0)) {
-            expandableListDetail.put("Home", menu1);
-            expandableListDetail.put("News", menu2);
-            expandableListDetail.put("Games", list3);
-            expandableListDetail.put("Services", list4);
-            expandableListDetail.put("Tutorials", list5);
-            expandableListDetail.put("Contact", menu6);
-            expandableListDetail.put("Sttings", list7);
-            expandableListDetail.put("Log in", menu8);
+            expandableListDetail.put(c.getString(R.string.menu_home), menu1);
+            expandableListDetail.put(c.getString(R.string.menu_news), menu2);
+            expandableListDetail.put(c.getString(R.string.menu_games), list3);
+            expandableListDetail.put(c.getString(R.string.menu_services), list4);
+            expandableListDetail.put(c.getString(R.string.menu_tutorials), list5);
+            expandableListDetail.put(c.getString(R.string.menu_contact), menu6);
+            expandableListDetail.put(c.getString(R.string.menu_settings), list7);
+            expandableListDetail.put(c.getString(R.string.menu_login), menu8);
             }
         else {
-            list7.add("My Account");
-            list7.add("Control");
-            expandableListDetail.put("Home", menu1);
-            expandableListDetail.put("News", menu2);
-            expandableListDetail.put("Online games", list3);
-            expandableListDetail.put("Services", list4);
-            expandableListDetail.put("Tutorials", list5);
-            expandableListDetail.put("Contact", menu6);
-            expandableListDetail.put("Sttings", list7);
-            expandableListDetail.put("Log off", menu8);
+            list7.add(c.getString(R.string.menu_my_account));
+            list7.add(c.getString(R.string.menu_control));
+            expandableListDetail.put(c.getString(R.string.menu_home), menu1);
+            expandableListDetail.put(c.getString(R.string.menu_news), menu2);
+            expandableListDetail.put(c.getString(R.string.menu_games), list3);
+            expandableListDetail.put(c.getString(R.string.menu_services), list4);
+            expandableListDetail.put(c.getString(R.string.menu_tutorials), list5);
+            expandableListDetail.put(c.getString(R.string.menu_contact), menu6);
+            expandableListDetail.put(c.getString(R.string.menu_settings), list7);
+            expandableListDetail.put(c.getString(R.string.menu_logoff), menu8);
         }
 
 

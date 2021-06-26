@@ -28,7 +28,7 @@ public class FlyActivity extends AppCompatActivity {
         });
         TextView textView=findViewById(R.id.highScoreTxt);
         SharedPreferences preferences=getSharedPreferences("FlyGame",MODE_PRIVATE);
-        textView.setText("Yuqori ball : "+preferences.getInt("highscore",0));
+        textView.setText(getString(R.string.high_score)+preferences.getInt("highscore",0));
         isMute=preferences.getBoolean("isMute",false);
         ImageView imageView=findViewById(R.id.volumeCtrl);
         if(isMute){

@@ -10,7 +10,7 @@
     <Button
         android:id="@+id/GuidCreation"
         android:layout_width="match_parent"
-        android:text="GUID Creation"
+        android:text="@string/guid_creation"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -21,7 +21,7 @@
         android:id="@+id/GuidValue"
         android:layout_width="match_parent"
         android:layout_below="@id/GuidCreation"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="@color/Black"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
@@ -37,6 +37,6 @@
         android:layout_below="@id/GuidValue"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="Copy" />
+        android:text="@string/copy" />
 
 </RelativeLayout>

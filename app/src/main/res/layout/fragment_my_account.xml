@@ -13,7 +13,7 @@
         >
         <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp">
@@ -23,8 +23,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Foydalanuvchi ma'lumotlari"
-                android:textSize = "20dp"
+                android:text="@string/user_information"
+                android:textSize = "20sp"
                 android:textStyle="bold">
 
             </TextView>
@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:text="Ism:"/>
+                    android:text="@string/first_name"/>
                 <TextView
                     android:id="@+id/first_name"
                     android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:text="Familya:" />
+                    android:text="@string/last_name" />
                 <TextView
                     android:id="@+id/last_name"
                     android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:text="Otasining ismi:" />
+                    android:text="@string/middle_name" />
                 <TextView
                     android:id="@+id/middle_name"
                     android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:text="Role:" />
+                    android:text="@string/role" />
                 <TextView
                     android:id="@+id/role"
                     android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:text="Email:" />
+                    android:text="@string/email" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:text="Telefon raqami:"/>
+                    android:text="@string/phone_number"/>
                 <TextView
                     android:id="@+id/phone_number"
                     android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:text="Login:" />
+                    android:text="@string/login" />
                 <TextView
                     android:id="@+id/login"
                     android:layout_width="wrap_content"
@@ -142,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:text="Visit count:" />
+                    android:text="@string/visit_count" />
                 <TextView
                     android:id="@+id/visit_count"
                     android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:text="Registration date:" />
+                    android:text="@string/registration_date" />
                 <TextView
                     android:id="@+id/reg_date"
                     android:layout_width="wrap_content"
@@ -171,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:text="Change date:" />
+                    android:text="@string/change_date" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -185,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:text="Tizimga kirish vaqti (Oxirgi):" />
+                    android:text="@string/last_access_date_text" />
                 <TextView
                     android:id="@+id/last_access_date"
                     android:layout_width="wrap_content"
@@ -200,7 +200,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:text="Tizimdan chiqish vaqti (Oxirgi):" />
+                    android:text="@string/last_release_date_text" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

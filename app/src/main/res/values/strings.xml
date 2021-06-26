@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">C0mplex</string>
+    <string name="select_language">Select Language</string>
+    <string name="screen_two_text">Hello Everyone this is the result for language localisation</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Complex Programmer</string>
@@ -9,8 +11,9 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_news">News</string>
-    <string name="menu_online_games">Online games</string>
+    <string name="menu_games">Games</string>
     <string name="menu_tic_tac_toe">Tic Tac Toe</string>
+    <string name="menu_fly">Fly</string>
     <string name="menu_services">Services</string>
     <string name="menu_guid">GUID creation</string>
     <string name="menu_change_text">Change Text</string>
@@ -35,11 +38,13 @@
     <string name="previous">Previous</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_second_fragment">Hello second fragment.</string>
     <string name="title_activity_expandable_list_view">ExpandableListViewActivity</string>
-
+    <string name="android_studi">Android Studio</string>
+    <string name="xamarin">Xamarin</string>
     <string name="drawer_open"></string>
     <string name="drawer_close"></string>
+
 
     <string name="fa_glass">&#xf000;</string>
     <string name="fa_music">&#xf001;</string>
@@ -67,9 +72,38 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome!"</string>
+    <string name="welcome">"Welcomlogin_failede!"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_no_internet">NoInternetActivity</string>
+    <string name="i_have_to_fly">I have to fly!</string>
+    <string name="play">Play</string>
+    <string name="high_score">High score :</string>
+    <string name="notif_registration_text">You are registered from the Complex Programmer system.</string>
+    <string name="guid_creation">GUID Creation</string>
+    <string name="copy">Copy</string>
+    <string name="user_information">User information</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="middle_name">Middle name</string>
+    <string name="role">Role</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone number</string>
+    <string name="login">Login</string>
+    <string name="visit_count">Visit count</string>
+    <string name="registration_date">Registration date</string>
+    <string name="change_date">Change date</string>
+    <string name="last_access_date_text">last_access_date_text</string>
+    <string name="last_release_date_text">Login Time (Last)</string>
+    <string name="no_internet_is_available">No internet is available</string>
+    <string name="player_1">1 - player: 0</string>
+    <string name="player_2">2 - player: 0</string>
+    <string name="restart">Restart</string>
+    <string name="enter_password">Enter password</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="c0mplex">C0mplex</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+
 </resources>
