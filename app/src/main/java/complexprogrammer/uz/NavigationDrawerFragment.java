@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,6 +25,7 @@ import androidx.fragment.app.FragmentTransaction;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import complexprogrammer.uz.ui.AdminPanelFragment;
 import complexprogrammer.uz.ui.ContactFragment;
@@ -33,9 +35,9 @@ import complexprogrammer.uz.ui.account.LoginTabFragment;
 import complexprogrammer.uz.ui.account.LogoffFragment;
 import complexprogrammer.uz.ui.account.MyAccountFragment;
 import complexprogrammer.uz.ui.games.FlyActivity;
+import complexprogrammer.uz.ui.games.TicTacToeFragment;
 import complexprogrammer.uz.ui.home.HomeFragment;
 import complexprogrammer.uz.ui.news.NewsFragment;
-import complexprogrammer.uz.ui.games.TicTacToeFragment;
 import complexprogrammer.uz.ui.services.ChangeTextFragment;
 import complexprogrammer.uz.ui.services.CompressImageFragment;
 import complexprogrammer.uz.ui.services.GuidFragment;
@@ -80,7 +82,6 @@ public class NavigationDrawerFragment extends Fragment {
         // Indicate that this fragment would like to influence the set of actions in the action bar.
         setHasOptionsMenu(true);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -180,7 +181,6 @@ public class NavigationDrawerFragment extends Fragment {
                     }
                     else if (childPosition == ExpandableListAdapter.SUBITEM1_2) {
                             startActivity(new Intent(getActivity(), FlyActivity.class));
-                        // call activity here
 
                     }
 //                    else if (childPosition == ExpandableListAdapter.SUBITEM1_3) {
@@ -287,8 +287,7 @@ public class NavigationDrawerFragment extends Fragment {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                getActionBar().setIcon(R.drawable.ic_menu_camera);
-
+                getActionBar().show();
                 if (!isAdded()) {
                     return;
                 }
@@ -299,8 +298,6 @@ public class NavigationDrawerFragment extends Fragment {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-
-
                 if (!isAdded()) {
                     return;
                 }
@@ -325,6 +322,8 @@ public class NavigationDrawerFragment extends Fragment {
 
     private void selectItem(int position) {
         mCurrentSelectedPosition = position;
+
+
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
         }
@@ -373,13 +372,43 @@ public class NavigationDrawerFragment extends Fragment {
 //            inflater.inflate(R.menu.main_menu, menu);
 //            showGlobalContextActionBar();
 //        }
-//        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.main_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+
         if (mDrawerToggle.onOptionsItemSelected(item)) {
+            getActionBar().hide();
             return true;
+        }
+        else{
+            int id = item.getItemId();
+
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.english) {
+                Locale locale = new Locale("en");
+                Locale.setDefault(locale);
+                Configuration config = new Configuration();
+                config.locale = locale;
+                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+                Toast.makeText(getContext(), "switched to English!", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getActivity(), MainActivity.class));
+
+            }else {
+                if (id == R.id.uzbek) {
+                    Locale locale = new Locale("uz");
+                    Locale.setDefault(locale);
+                    Configuration config = new Configuration();
+                    config.locale = locale;
+                    getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+                    Toast.makeText(getContext(), "O'zbek tiliga o'tdi!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+
+                }
+            }
         }
 
 

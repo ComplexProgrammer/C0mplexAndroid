@@ -1,19 +1,19 @@
 package complexprogrammer.uz;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.drawable.Animatable;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import complexprogrammer.uz.ui.account.LoginActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
+import java.util.Objects;
 
 public class SplashScreenActivity extends AppCompatActivity {
     Animation topAnim,bottomAnim;
@@ -24,8 +24,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
+        Locale locale = new Locale("uz");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
 
-       getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         logo=findViewById(R.id.imageView);
         title=findViewById(R.id.textView2);
         sub_title=findViewById(R.id.textView);

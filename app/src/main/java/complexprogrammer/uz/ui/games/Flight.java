@@ -83,7 +83,7 @@ public class Flight {
         wingCounter--;
         return flight2;
     }
-    Rect getCollisinShapt(){
+    Rect getCollisionsShape(){
         return new Rect(x,y,x+width,y+height);
     }
     Bitmap getDead(){

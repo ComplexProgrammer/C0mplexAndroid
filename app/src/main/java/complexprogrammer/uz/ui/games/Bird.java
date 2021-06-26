@@ -53,7 +53,7 @@ public class Bird {
         return bird4;
 
     }
-    Rect getCollisinShapt(){
+    Rect getCollisionsShape(){
         return new Rect(x,y,x+width,y+height);
     }
 }

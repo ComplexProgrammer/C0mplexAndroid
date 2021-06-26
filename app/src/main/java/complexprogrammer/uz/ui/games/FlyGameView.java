@@ -11,6 +11,7 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
@@ -37,6 +38,8 @@ public class FlyGameView extends SurfaceView implements Runnable{
     private int screenX,screenY,score=0;
     public FlyGameView(FlyGameActivity activity,int screenX,int screenY) {
         super(activity);
+        Log.d("screenX",""+screenX);
+        Log.d("screenY","" + screenY);
         this.activity=activity;
         preferences=activity.getSharedPreferences("FlyGame",Context.MODE_PRIVATE);
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
@@ -96,10 +99,10 @@ public class FlyGameView extends SurfaceView implements Runnable{
             background2.x=screenX;
         }
         if(flight.isGoingUp){
-            flight.y-=30*screenRatioY;
+            flight.y-=10*screenRatioY;
         }
         else {
-            flight.y+=30*screenRatioY;
+            flight.y+=10*screenRatioY;
         }
         if(flight.y<0){
             flight.y=0;
@@ -115,7 +118,7 @@ public class FlyGameView extends SurfaceView implements Runnable{
             }
             bullet.x+=50*screenRatioX;
             for(Bird bird:birds){
-                if(Rect.intersects(bird.getCollisinShapt(),bullet.getCollisinShapt())){
+                if(Rect.intersects(bird.getCollisionsShape(),bullet.getCollisinShapt())){
                     score++;
                     bird.x=-500;
                     bullet.x=screenX+500;
@@ -130,10 +133,10 @@ public class FlyGameView extends SurfaceView implements Runnable{
             bird.x-=bird.speed;
             if(bird.x+bird.width<0){
 
-                if(!bird.wasShot){
-                    isGameOver=true;
-                    return;
-                }
+//                if(!bird.wasShot){
+//                    isGameOver =true;
+//                    return;
+//                }
                 int bound= (int) (30*screenRatioX);
                 bird.speed=random.nextInt(bound);
                 if(bird.speed<10*screenRatioX){
@@ -144,10 +147,10 @@ public class FlyGameView extends SurfaceView implements Runnable{
 
                 bird.wasShot=false;
             }
-            if(Rect.intersects(bird.getCollisinShapt(),flight.getCollisinShapt())){
-                isGameOver = true;
-                return;
-            }
+//            if(Rect.intersects(bird.getCollisionsShape(),flight.getCollisionsShape())){
+//                isGameOver = true;
+//                return;
+//            }
         }
 
     }
@@ -179,7 +182,7 @@ public class FlyGameView extends SurfaceView implements Runnable{
 
     private void waitBeforeExiting() {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
             activity.startActivity(new Intent(activity,FlyActivity.class));
             activity.finish();
         } catch (InterruptedException e) {
@@ -219,6 +222,8 @@ public class FlyGameView extends SurfaceView implements Runnable{
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        Log.e("getX",""+event.getX());
+        Log.e("getY",""+event.getY());
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
                 if(event.getX()<screenX/2){
@@ -233,6 +238,19 @@ public class FlyGameView extends SurfaceView implements Runnable{
                 break;
         }
         return true;
+    }
+    public static String actionToString(int action) {
+        switch (action) {
+
+            case MotionEvent.ACTION_DOWN: return "Down";
+            case MotionEvent.ACTION_MOVE: return "Move";
+            case MotionEvent.ACTION_POINTER_DOWN: return "Pointer Down";
+            case MotionEvent.ACTION_UP: return "Up";
+            case MotionEvent.ACTION_POINTER_UP: return "Pointer Up";
+            case MotionEvent.ACTION_OUTSIDE: return "Outside";
+            case MotionEvent.ACTION_CANCEL: return "Cancel";
+        }
+        return "";
     }
 
     public void newBullet() {

@@ -1,7 +1,7 @@
 package complexprogrammer.uz.ui;
 
+import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +12,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import java.util.Locale;
 
+import complexprogrammer.uz.MainActivity;
 import complexprogrammer.uz.R;
 
 
@@ -28,10 +28,6 @@ public class LanguageFragment extends Fragment {
         // Required empty public constructor
     }
 
-
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,7 +35,7 @@ public class LanguageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_language, container, false);
 
         spinner = view.findViewById(R.id.spinner);
-        SelectLanguageFragment selectLanguageFragment=new SelectLanguageFragment();
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -51,15 +47,17 @@ public class LanguageFragment extends Fragment {
                 String selectedLang = adapterView.getItemAtPosition(i).toString();
                 if(selectedLang.equals("Uzbek")){
                     setLocal(LanguageFragment.this,"uz");
-                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.nav_host_fragment, selectLanguageFragment);
-                    fragmentTransaction.commit();
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+//                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                    fragmentTransaction.replace(R.id.nav_host_fragment, selectLanguageFragment);
+//                    fragmentTransaction.commit();
                 }
                 else if(selectedLang.equals("English")){
                     setLocal(LanguageFragment.this,"en");
-                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.nav_host_fragment, selectLanguageFragment);
-                    fragmentTransaction.commit();
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+//                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                    fragmentTransaction.replace(R.id.nav_host_fragment, selectLanguageFragment);
+//                    fragmentTransaction.commit();
                 }
                 else {
                     Toast.makeText(getContext(), "Please select a Language", Toast.LENGTH_SHORT).show();
@@ -78,10 +76,12 @@ public class LanguageFragment extends Fragment {
     public  void setLocal(Fragment fragment, String langCode){
         Locale locale = new Locale(langCode);
         locale.setDefault(locale);
-
-        Resources resources = fragment.getResources();
-        Configuration config = resources.getConfiguration();
-        config.setLocale(locale);
-        resources.updateConfiguration(config,resources.getDisplayMetrics());
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+//        Resources resources = fragment.getResources();
+//        Configuration config = resources.getConfiguration();
+//        config.setLocale(locale);
+//        resources.updateConfiguration(config,resources.getDisplayMetrics());
     }
 }

@@ -1,9 +1,9 @@
 package complexprogrammer.uz;
 
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -11,15 +11,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
+
+import java.util.Locale;
 
 import complexprogrammer.uz.ui.account.LoginTabFragment;
 import complexprogrammer.uz.ui.gallery.GalleryFragment;
 import complexprogrammer.uz.ui.home.HomeFragment;
 import complexprogrammer.uz.ui.news.NewsFragment;
-import complexprogrammer.uz.ui.games.TicTacToeFragment;
 
 public class MainActivity extends AppCompatActivity  implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -74,32 +74,27 @@ public class MainActivity extends AppCompatActivity  implements NavigationDrawer
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.main_menu, menu);
+//        return true;
+//    }
 
     @Override
     public boolean onSupportNavigateUp() {
         return super.onSupportNavigateUp() ;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
     private void ShowFragment(int itemId) {
 
         Fragment fragment = null;
@@ -141,57 +136,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationDrawer
 
         return true;
     }
+
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        Toast.makeText(this,"position "+position,Toast.LENGTH_SHORT).show();
 
-        // update the main content by replacing fragments
-        if(position==R.id.nav_home){
-            Toast.makeText(this,"Home",Toast.LENGTH_SHORT).show();
-            HomeFragment fragment=new HomeFragment();
-            FragmentManager FM=getSupportFragmentManager();
-            FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
-        } else if (position==R.id.nav_news){
-            Toast.makeText(this,"News",Toast.LENGTH_SHORT).show();
-            NewsFragment fragment=new NewsFragment();
-            FragmentManager FM=getSupportFragmentManager();
-            FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
-        } else if (position==R.id.nav_tic_tac_toe){
-                    Toast.makeText(this,"Tic Tac Toe",Toast.LENGTH_SHORT).show();
-                    TicTacToeFragment fragment=new TicTacToeFragment();
-                    FragmentManager FM=getSupportFragmentManager();
-                    FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
-        } else if (position==R.id.nav_news){
-                    Toast.makeText(this,"Home",Toast.LENGTH_SHORT).show();
-                    HomeFragment fragment=new HomeFragment();
-                    FragmentManager FM=getSupportFragmentManager();
-                    FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
-        } else if (position==R.id.nav_news){
-                    Toast.makeText(this,"Home",Toast.LENGTH_SHORT).show();
-                    HomeFragment fragment=new HomeFragment();
-                    FragmentManager FM=getSupportFragmentManager();
-                    FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
-        } else if (position==R.id.nav_news){
-                    Toast.makeText(this,"Home",Toast.LENGTH_SHORT).show();
-                    HomeFragment fragment=new HomeFragment();
-                    FragmentManager FM=getSupportFragmentManager();
-                    FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
-        } else if (position==R.id.nav_news){
-                    Toast.makeText(this,"Home",Toast.LENGTH_SHORT).show();
-                    HomeFragment fragment=new HomeFragment();
-                    FragmentManager FM=getSupportFragmentManager();
-                    FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
-        } else if (position==R.id.nav_news){
-                    Toast.makeText(this,"Home",Toast.LENGTH_SHORT).show();
-                    HomeFragment fragment=new HomeFragment();
-                    FragmentManager FM=getSupportFragmentManager();
-                    FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
-        } else if (position==R.id.nav_news){
-                    Toast.makeText(this,"Home",Toast.LENGTH_SHORT).show();
-                    HomeFragment fragment=new HomeFragment();
-                    FragmentManager FM=getSupportFragmentManager();
-                    FM.beginTransaction().replace(R.id.nav_host_fragment,fragment,fragment.getTag()).commit();
-                }
-
-            }
+    }
 }
