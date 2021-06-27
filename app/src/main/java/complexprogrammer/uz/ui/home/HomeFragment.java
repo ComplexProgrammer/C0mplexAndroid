@@ -1,7 +1,6 @@
 package complexprogrammer.uz.ui.home;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -34,25 +32,26 @@ import complexprogrammer.uz.NoInternetFragment;
 import complexprogrammer.uz.R;
 import complexprogrammer.uz.models.NetworkUtil;
 import complexprogrammer.uz.services.GlideApp;
+import complexprogrammer.uz.ui.LanguageFragment;
 
 
 public class HomeFragment extends Fragment {
 
     // ArrayList for person names, email Id's and mobile numbers
     ArrayList<String>  imageUrls= new ArrayList<>();
-    ArrayList<String> titles = new ArrayList<>();
-    ArrayList<String> texts = new ArrayList<>();
-    NetworkUtil networkUtil=new NetworkUtil();
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//    }
+    ArrayList<String> titles_uz = new ArrayList<>();
+    ArrayList<String> titles_en = new ArrayList<>();
+    ArrayList<String> texts_uz = new ArrayList<>();
+    ArrayList<String> texts_en = new ArrayList<>();
+    private final static String TAG_FRAGMENT = "TAG_HOME_FRAGMENT";
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         String status = NetworkUtil.getConnectivityStatusString(getContext());
-        if(status=="No internet is available"){
+        if(status=="Internet mavjud emas"){
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new NoInternetFragment()).commit();
         }
         else {
@@ -64,7 +63,7 @@ public class HomeFragment extends Fragment {
 
 
     public void LoadData(View root){
-        CustomAdapter customAdapter = new CustomAdapter(root.getContext(), titles,texts,imageUrls);
+        CustomAdapter customAdapter = new CustomAdapter(root.getContext(), titles_uz,titles_en,texts_uz,texts_en,imageUrls);
 
 
         // get the reference of Recycl   erView
@@ -91,8 +90,10 @@ public class HomeFragment extends Fragment {
                                 JSONObject jsonDetail = response.getJSONObject(i);
                                 // fetch email and name and store it in arraylist
                                 imageUrls.add(jsonDetail.getString("image_url"));
-                                titles.add(jsonDetail.getString("short_title_uz"));
-                                texts.add(jsonDetail.getString("text_uz"));
+                                titles_uz.add(jsonDetail.getString("short_title_uz"));
+                                titles_en.add(jsonDetail.getString("short_title_en"));
+                                texts_uz.add(jsonDetail.getString("text_uz"));
+                                texts_en.add(jsonDetail.getString("text_en"));
                             }
                             //  call the constructor of CustomAdapter to send the reference and data to Adapter
 
@@ -118,15 +119,19 @@ public class HomeFragment extends Fragment {
         requestQueue.add(objectRequest);
     }
     public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder>{
-        private ArrayList<String> titles;
-        private ArrayList<String> texts;
+        private ArrayList<String> titles_uz;
+        private ArrayList<String> titles_en;
+        private ArrayList<String> texts_uz;
+        private ArrayList<String> texts_en;
         private ArrayList<String> imageUrls;
         private final Context context;
-        public CustomAdapter(Context context, ArrayList<String> titles, ArrayList<String> texts, ArrayList<String> imageUrls) {
+        public CustomAdapter(Context context, ArrayList<String> titles_uz,ArrayList<String> titles_en, ArrayList<String> texts_uz, ArrayList<String> texts_en, ArrayList<String> imageUrls) {
             this.context = context;
-            this.titles = titles;
+            this.titles_uz = titles_uz;
+            this.titles_en = titles_en;
             this.imageUrls = imageUrls;
-            this.texts = texts;
+            this.texts_uz = texts_uz;
+            this.texts_en = texts_en;
         }
         @Override
         public CustomAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -136,35 +141,41 @@ public class HomeFragment extends Fragment {
             return vh;
         }
 
-//        @Override
-//        public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
-//
-//        }
 
         @Override
         public void onBindViewHolder(CustomAdapter.MyViewHolder holder,final int position) {
             // set the data in items
             GlideApp.with(context).load(imageUrls.get(position)).into(holder.imageView);
-            holder.title.setText(titles.get(position));
+            LanguageFragment languageFragment=new LanguageFragment();
+            String langCode=languageFragment.getLangCode(getContext());
+            if(langCode.equals("uz")){
+                holder.title.setText(titles_uz.get(position));
+
+            }else{
+                if(langCode.equals("en")){
+                    holder.title.setText(titles_en.get(position));
+                }
+            }
             // implement setOnClickListener event on item view.
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // display a toast with person name on item click
-                    Toast.makeText(context, titles.get(position), Toast.LENGTH_SHORT).show();
+
                     HomeViewModel homeViewModel = new HomeViewModel();
-                    homeViewModel.title=titles.get(position);
-                    homeViewModel.text=texts.get(position);
+                    homeViewModel.title_uz=titles_uz.get(position);
+                    homeViewModel.title_en=titles_en.get(position);
+                    homeViewModel.text_uz=texts_uz.get(position);
+                    homeViewModel.text_en=texts_en.get(position);
                     homeViewModel.image_url=imageUrls.get(position);
-                    Log.e("homeViewModel",homeViewModel.title);
-                Intent intent = new Intent(getActivity(), HomeViewByIdActivity.class).putExtra("data", homeViewModel);
-                startActivity(intent);
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, HomeViewByIdFragment.newInstance(homeViewModel)).addToBackStack("HomeFragment").commit();
+
                 }
             });
         }
+
         @Override
         public int getItemCount() {
-            return titles.size();
+            return titles_uz.size();
         }
         public class MyViewHolder extends RecyclerView.ViewHolder {
             TextView title, text;// init the item view's

@@ -1,7 +1,6 @@
 package complexprogrammer.uz;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -12,8 +11,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Locale;
 import java.util.Objects;
+
+import complexprogrammer.uz.ui.LanguageFragment;
 
 public class SplashScreenActivity extends AppCompatActivity {
     Animation topAnim,bottomAnim;
@@ -24,12 +24,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
-        Locale locale = new Locale("uz");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-
+        LanguageFragment languageFragment=new LanguageFragment();
+        languageFragment.getLangCode(this);
         Objects.requireNonNull(getSupportActionBar()).hide();
         logo=findViewById(R.id.imageView);
         title=findViewById(R.id.textView2);

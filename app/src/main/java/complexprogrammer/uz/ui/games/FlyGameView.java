@@ -71,7 +71,7 @@ public class FlyGameView extends SurfaceView implements Runnable{
         background2.x=screenX;
         paint=new Paint();
         paint.setTextSize(128);
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.RED);
 
         birds=new Bird[4];
         for(int i=0;i<4;i++){
@@ -102,7 +102,7 @@ public class FlyGameView extends SurfaceView implements Runnable{
             flight.y-=10*screenRatioY;
         }
         else {
-            flight.y+=10*screenRatioY;
+            flight.y+=5*screenRatioY;
         }
         if(flight.y<0){
             flight.y=0;
@@ -147,10 +147,10 @@ public class FlyGameView extends SurfaceView implements Runnable{
 
                 bird.wasShot=false;
             }
-//            if(Rect.intersects(bird.getCollisionsShape(),flight.getCollisionsShape())){
-//                isGameOver = true;
-//                return;
-//            }
+            if(Rect.intersects(bird.getCollisionsShape(),flight.getCollisionsShape())){
+                isGameOver = true;
+                return;
+            }
         }
 
     }
@@ -182,7 +182,7 @@ public class FlyGameView extends SurfaceView implements Runnable{
 
     private void waitBeforeExiting() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(3000);
             activity.startActivity(new Intent(activity,FlyActivity.class));
             activity.finish();
         } catch (InterruptedException e) {
@@ -238,19 +238,6 @@ public class FlyGameView extends SurfaceView implements Runnable{
                 break;
         }
         return true;
-    }
-    public static String actionToString(int action) {
-        switch (action) {
-
-            case MotionEvent.ACTION_DOWN: return "Down";
-            case MotionEvent.ACTION_MOVE: return "Move";
-            case MotionEvent.ACTION_POINTER_DOWN: return "Pointer Down";
-            case MotionEvent.ACTION_UP: return "Up";
-            case MotionEvent.ACTION_POINTER_UP: return "Pointer Up";
-            case MotionEvent.ACTION_OUTSIDE: return "Outside";
-            case MotionEvent.ACTION_CANCEL: return "Cancel";
-        }
-        return "";
     }
 
     public void newBullet() {

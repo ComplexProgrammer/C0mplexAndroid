@@ -2,30 +2,23 @@ package complexprogrammer.uz.ui.account;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import org.jetbrains.annotations.NotNull;
-
 import complexprogrammer.uz.R;
 import complexprogrammer.uz.models.TextValue;
 import complexprogrammer.uz.services.ApiClient;
 import complexprogrammer.uz.services.Validation;
-import complexprogrammer.uz.ui.news.NewsViewByIdActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

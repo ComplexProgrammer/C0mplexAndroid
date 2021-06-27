@@ -1,10 +1,10 @@
 package complexprogrammer.uz.ui.games;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class FlyGameActivity extends AppCompatActivity {
 
@@ -17,6 +17,7 @@ public class FlyGameActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getSize(point);
         gameView=new FlyGameView(this,point.x,point.y);
         setContentView(gameView);
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package complexprogrammer.uz.ui.games;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import complexprogrammer.uz.R;
+import complexprogrammer.uz.SplashScreenActivity;
+import complexprogrammer.uz.ui.LanguageFragment;
 
 public class FlyActivity extends AppCompatActivity {
 
@@ -18,7 +21,17 @@ public class FlyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LanguageFragment languageFragment=new LanguageFragment();
+        SharedPreferences pref=getSharedPreferences("C0mplexLanguage", Context.MODE_PRIVATE);
+        if(pref.getString("langCode",null)==null){
+            languageFragment.setLocal(this,"uz");
+        }
+        else{
+            languageFragment.setLocal(this,pref.getString("langCode",null));
+
+        }
         setContentView(R.layout.activity_fly);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         findViewById(R.id.play).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,5 +65,12 @@ public class FlyActivity extends AppCompatActivity {
                 editor.apply();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(FlyActivity.this, SplashScreenActivity.class));
+        this.finish();
+        super.onBackPressed();
     }
 }

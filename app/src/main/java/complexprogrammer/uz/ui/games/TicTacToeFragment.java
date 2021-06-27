@@ -134,8 +134,8 @@ private TextView textViewPlayer2;
         resetBoard();
     }
     private void updatePointsText(){
-        textViewPlayer1.setText("1 - o'yinchi: "+player1Points);
-        textViewPlayer2.setText("2 - o'yinchi: "+player2Points);
+        textViewPlayer1.setText(getString(R.string.player_1) +player1Points);
+        textViewPlayer2.setText(getString(R.string.player_2)+player2Points);
     }
     private void resetBoard(){
         for(int i=0;i<3;i++){

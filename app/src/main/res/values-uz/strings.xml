@@ -5,7 +5,7 @@
     <string name="screen_two_text">Barchalarga salom bu tilni lokalizatsiya qilish natijasidir</string>
     <string name="navigation_drawer_open">Navigatsiya tortmasini oching</string>
     <string name="navigation_drawer_close">Navigatsiya tortmachasini yoping</string>
-    <string name="nav_header_title">Kompleks dasturchi</string>
+    <string name="nav_header_title">Complex Programmer</string>
     <string name="nav_header_subtitle">complexprogrammer.uz</string>
     <string name="nav_header_desc">Navigatsiya sarlavhasi</string>
     <string name="action_settings">Sozlamalar</string>
@@ -92,8 +92,8 @@
     <string name="last_access_date_text">Tizimga kirish vaqti (Oxirgi)</string>
     <string name="last_release_date_text">Tizimdan chiqish vaqti (Oxirgi)</string>
     <string name="no_internet_is_available">Internet mavjud emas</string>
-    <string name="player_1">1 - o\'yinchi: 0</string>
-    <string name="player_2">2 - o\'yinchi: 0</string>
+    <string name="player_1">1 - o\'yinchi: </string>
+    <string name="player_2">2 - o\'yinchi: </string>
     <string name="restart">Yangilash</string>
     <string name="enter_password">Parolni kiriting</string>
     <string name="forget_password">Parolni unutdingizmi?</string>

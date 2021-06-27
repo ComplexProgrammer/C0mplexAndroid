@@ -1,6 +1,8 @@
 package complexprogrammer.uz.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import complexprogrammer.uz.R;
 
 public class LanguageFragment extends Fragment {
 
+    private SharedPreferences preferences;
     Spinner spinner;
     public static final String[] languages ={"Language","English","Uzbek"};
 
@@ -46,18 +49,12 @@ public class LanguageFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedLang = adapterView.getItemAtPosition(i).toString();
                 if(selectedLang.equals("Uzbek")){
-                    setLocal(LanguageFragment.this,"uz");
+                    setLocal(LanguageFragment.this.getActivity(),"uz");
                     startActivity(new Intent(getActivity(), MainActivity.class));
-//                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                    fragmentTransaction.replace(R.id.nav_host_fragment, selectLanguageFragment);
-//                    fragmentTransaction.commit();
                 }
                 else if(selectedLang.equals("English")){
-                    setLocal(LanguageFragment.this,"en");
+                    setLocal(LanguageFragment.this.getActivity(),"en");
                     startActivity(new Intent(getActivity(), MainActivity.class));
-//                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                    fragmentTransaction.replace(R.id.nav_host_fragment, selectLanguageFragment);
-//                    fragmentTransaction.commit();
                 }
                 else {
                     Toast.makeText(getContext(), "Please select a Language", Toast.LENGTH_SHORT).show();
@@ -73,15 +70,34 @@ public class LanguageFragment extends Fragment {
         });
         return view;
     }
-    public  void setLocal(Fragment fragment, String langCode){
+    public void setLocal(Context context, String langCode){
         Locale locale = new Locale(langCode);
         locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
-        getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
-//        Resources resources = fragment.getResources();
-//        Configuration config = resources.getConfiguration();
-//        config.setLocale(locale);
-//        resources.updateConfiguration(config,resources.getDisplayMetrics());
+        context.createConfigurationContext(config);
+        context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+        preferences=context.getSharedPreferences("C0mplexLanguage", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=preferences.edit();
+        editor.putString("langCode",langCode);
+        editor.apply();
+    }
+    public String getLangCode(Context context){
+        preferences=context.getSharedPreferences("C0mplexLanguage", Context.MODE_PRIVATE);
+        String langCode=preferences.getString("langCode",null);
+        if(langCode==null){
+            setLocal(context,"uz");
+        }
+        else {
+            if(langCode.equals("uz")){
+                return "uz";
+            } else{
+                if(langCode.equals("en")){
+                    return "en";
+                }
+            }
+        }
+
+        return null;
     }
 }

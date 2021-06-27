@@ -97,8 +97,8 @@
     <string name="last_access_date_text">last_access_date_text</string>
     <string name="last_release_date_text">Login Time (Last)</string>
     <string name="no_internet_is_available">No internet is available</string>
-    <string name="player_1">1 - player: 0</string>
-    <string name="player_2">2 - player: 0</string>
+    <string name="player_1">1 - player: </string>
+    <string name="player_2">2 - player: </string>
     <string name="restart">Restart</string>
     <string name="enter_password">Enter password</string>
     <string name="forget_password">Forget Password?</string>

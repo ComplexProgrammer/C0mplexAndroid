@@ -25,7 +25,6 @@ import androidx.fragment.app.FragmentTransaction;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import complexprogrammer.uz.ui.AdminPanelFragment;
 import complexprogrammer.uz.ui.ContactFragment;
@@ -249,6 +248,7 @@ public class NavigationDrawerFragment extends Fragment {
         if (fragment != null) {
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+            fragmentTransaction.addToBackStack("SplashScreenActivity");
             fragmentTransaction.commit();
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -386,35 +386,25 @@ public class NavigationDrawerFragment extends Fragment {
         }
         else{
             int id = item.getItemId();
-
+            LanguageFragment languageFragment=new LanguageFragment();
             //noinspection SimplifiableIfStatement
             if (id == R.id.english) {
-                Locale locale = new Locale("en");
-                Locale.setDefault(locale);
-                Configuration config = new Configuration();
-                config.locale = locale;
-                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
-                Toast.makeText(getContext(), "switched to English!", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getActivity(), MainActivity.class));
-
+                languageFragment.setLocal(getContext(),"en");
+                Toast.makeText(getContext(), "English language selected!", Toast.LENGTH_LONG).show();
             }else {
                 if (id == R.id.uzbek) {
-                    Locale locale = new Locale("uz");
-                    Locale.setDefault(locale);
-                    Configuration config = new Configuration();
-                    config.locale = locale;
-                    getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
-                    Toast.makeText(getContext(), "O'zbek tiliga o'tdi!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getActivity(), MainActivity.class));
+                    languageFragment.setLocal(getContext(),"uz");
+                    Toast.makeText(getContext(), "O'zbek tili tanlandi!", Toast.LENGTH_LONG).show();
+
 
                 }
             }
+            startActivity(new Intent(getContext(), MainActivity.class));
         }
 
 
         return super.onOptionsItemSelected(item);
     }
-
     /**
      * Per the navigation drawer design guidelines, updates the action bar to show the global app
      * 'context', rather than just what's in the current screen.
