@@ -86,7 +86,7 @@ public class LanguageFragment extends Fragment {
         preferences=context.getSharedPreferences("C0mplexLanguage", Context.MODE_PRIVATE);
         String langCode=preferences.getString("langCode",null);
         if(langCode==null){
-            setLocal(context,"uz");
+            setLocal(context,"en");
         }
         else {
             if(langCode.equals("uz")){
