@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "790153984920",
+    "project_id": "complexprogrammeruz---ga4",
+    "storage_bucket": "complexprogrammeruz---ga4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790153984920:android:c978acf157e2869ec609ed",
+        "android_client_info": {
+          "package_name": "complexprogrammer.uz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790153984920-96vaiajuif8p51amsjh3oqitcjt2np2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVsA_L4NkC_mP0cVjdFTCd89aWv1bBVn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790153984920-96vaiajuif8p51amsjh3oqitcjt2np2c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

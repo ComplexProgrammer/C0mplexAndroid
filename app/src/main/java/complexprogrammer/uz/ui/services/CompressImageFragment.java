@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import complexprogrammer.uz.R;
 
 import static android.app.Activity.RESULT_OK;
@@ -19,6 +22,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class CompressImageFragment extends Fragment {
 
+    private AdView mAdView;
     // One Button
     Button BSelectImage;
 
@@ -34,7 +38,10 @@ public class CompressImageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_compress_image, container, false);
-
+        mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
         BSelectImage = view.findViewById(R.id.BSelectImage);
         IVPreviewImage = view.findViewById(R.id.IVPreviewImage);
 

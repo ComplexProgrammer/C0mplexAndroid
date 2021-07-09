@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import complexprogrammer.uz.R;
 import complexprogrammer.uz.services.GlideApp;
 import complexprogrammer.uz.ui.LanguageFragment;
@@ -19,6 +22,7 @@ public class NewsViewByIdFragment extends Fragment {
     static NewsResponse newsResponse;
     ImageView imageView;
     TextView short_title,long_title,text;
+    private AdView mAdView;
     public static NewsViewByIdFragment newInstance(NewsResponse data) {
         NewsViewByIdFragment fragment = new NewsViewByIdFragment();
         newsResponse=data;
@@ -29,6 +33,10 @@ public class NewsViewByIdFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news_view_by_id, container, false);
+        mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
         imageView=view.findViewById(R.id.imageView);
         short_title=view.findViewById(R.id.short_title);
         long_title=view.findViewById(R.id.long_title);

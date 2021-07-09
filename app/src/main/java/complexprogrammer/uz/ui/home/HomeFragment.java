@@ -21,6 +21,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +39,9 @@ import complexprogrammer.uz.ui.LanguageFragment;
 
 public class HomeFragment extends Fragment {
 
+
+
+
     // ArrayList for person names, email Id's and mobile numbers
     ArrayList<String>  imageUrls= new ArrayList<>();
     ArrayList<String> titles_uz = new ArrayList<>();
@@ -44,12 +49,19 @@ public class HomeFragment extends Fragment {
     ArrayList<String> texts_uz = new ArrayList<>();
     ArrayList<String> texts_en = new ArrayList<>();
     private final static String TAG_FRAGMENT = "TAG_HOME_FRAGMENT";
-
+    private AdView mAdView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        mAdView = root.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
+
+
+
         String status = NetworkUtil.getConnectivityStatusString(getContext());
         if(status=="Internet mavjud emas"){
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new NoInternetFragment()).commit();
@@ -58,6 +70,7 @@ public class HomeFragment extends Fragment {
             LoadData(root);
         }
 //        Toast.makeText(getContext(), status, Toast.LENGTH_LONG).show();
+
         return root;
     }
 

@@ -18,9 +18,11 @@ import complexprogrammer.uz.ui.LanguageFragment;
 public class FlyActivity extends AppCompatActivity {
 
     private boolean isMute;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         LanguageFragment languageFragment=new LanguageFragment();
         SharedPreferences pref=getSharedPreferences("C0mplexLanguage", Context.MODE_PRIVATE);
         if(pref.getString("langCode",null)==null){

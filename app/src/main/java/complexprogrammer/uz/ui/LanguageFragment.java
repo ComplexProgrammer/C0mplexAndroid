@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.Locale;
 
 import complexprogrammer.uz.MainActivity;
@@ -23,6 +26,7 @@ import complexprogrammer.uz.R;
 
 public class LanguageFragment extends Fragment {
 
+    private AdView mAdView;
     private SharedPreferences preferences;
     Spinner spinner;
     public static final String[] languages ={"Language","English","Uzbek"};
@@ -36,7 +40,10 @@ public class LanguageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_language, container, false);
-
+        mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
         spinner = view.findViewById(R.id.spinner);
 
 

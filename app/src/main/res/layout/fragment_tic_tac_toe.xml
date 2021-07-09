@@ -5,7 +5,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.games.TicTacToeFragment">
-
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-7773722896374259/2268316679">
+    </com.google.android.gms.ads.AdView>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +37,16 @@ public class NewsFragment extends Fragment {
     private Button openNewsBtn;
     private List<NewsResponse> newsResponseList=new ArrayList<>();
     GridView gridView;
-
+    private AdView mAdView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news, container, false);
+        mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
         String status = NetworkUtil.getConnectivityStatusString(getContext());
         if(status=="Internet mavjud emas"){
             //startActivity(new Intent(getActivity(), NoInternetActivity.class));

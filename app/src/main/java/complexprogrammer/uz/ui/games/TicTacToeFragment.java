@@ -11,6 +11,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import org.jetbrains.annotations.NotNull;
 
 import complexprogrammer.uz.R;
@@ -24,11 +27,16 @@ private int player1Points;
 private int player2Points;
 private TextView textViewPlayer1;
 private TextView textViewPlayer2;
+    private AdView mAdView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tic_tac_toe, container, false);
+        mAdView = view.findViewById(R.id.adView1);
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        mAdView.loadAd(adRequest);
         textViewPlayer1=view.findViewById(R.id.text_view_p1);
         textViewPlayer2=view.findViewById(R.id.text_view_p2);
         for(int i=0;i<3;i++){
