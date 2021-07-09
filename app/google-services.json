@@ -1,38 +1,48 @@
 {
   "project_info": {
-    "project_number": "790153984920",
-    "project_id": "complexprogrammeruz---ga4",
-    "storage_bucket": "complexprogrammeruz---ga4.appspot.com"
+    "project_number": "889282039300",
+    "firebase_url": "https://pc-api-6854503445964035235-671-default-rtdb.firebaseio.com",
+    "project_id": "pc-api-6854503445964035235-671",
+    "storage_bucket": "pc-api-6854503445964035235-671.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:790153984920:android:c978acf157e2869ec609ed",
+        "mobilesdk_app_id": "1:889282039300:android:e81547f46be0cc69666f51",
         "android_client_info": {
           "package_name": "complexprogrammer.uz"
         }
       },
       "oauth_client": [
         {
-          "client_id": "790153984920-96vaiajuif8p51amsjh3oqitcjt2np2c.apps.googleusercontent.com",
+          "client_id": "889282039300-fsfkr83mfe3d1r06ab0rgco0rf3pd6g8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "complexprogrammer.uz",
+            "certificate_hash": "edc3d70c0b0ae8f1976cb56a0761dc0b5fff0807"
+          }
+        },
+        {
+          "client_id": "889282039300-95cftt86brqeh01pqv34e3ojqre98bf7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDVsA_L4NkC_mP0cVjdFTCd89aWv1bBVn4"
+          "current_key": "AIzaSyAjS72QL35MdYGtN-tf7hT6ON_IYTokJa4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "790153984920-96vaiajuif8p51amsjh3oqitcjt2np2c.apps.googleusercontent.com",
+              "client_id": "889282039300-95cftt86brqeh01pqv34e3ojqre98bf7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-7773722896374259~3957884431"
     }
   ],
   "configuration_version": "1"
