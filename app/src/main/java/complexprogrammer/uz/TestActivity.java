@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 public class TestActivity extends AppCompatActivity {
 
     private static final long GAME_LENGTH_MILLISECONDS = 3000;
-    private static final String AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712";
+    private static final String AD_UNIT_ID = "ca-app-pub-7773722896374259/6682753145";
     private static final String TAG = "TestActivity";
 
     private InterstitialAd interstitialAd;
@@ -63,7 +63,7 @@ public class TestActivity extends AppCompatActivity {
     }
     public void loadAd3() {
         // Use the test ad unit ID to load an ad.
-        RewardedInterstitialAd.load(TestActivity.this, "ca-app-pub-3940256099942544/1033173712",
+        RewardedInterstitialAd.load(TestActivity.this, "ca-app-pub-7773722896374259/7354505288",
                 new AdRequest.Builder().build(),  new RewardedInterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(RewardedInterstitialAd ad) {
