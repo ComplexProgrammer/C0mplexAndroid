@@ -33,10 +33,10 @@ private TextView textViewPlayer2;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tic_tac_toe, container, false);
-        mAdView = view.findViewById(R.id.adView1);
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
-        mAdView.loadAd(adRequest);
+//        mAdView = view.findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder()
+//                .build();
+//        mAdView.loadAd(adRequest);
         textViewPlayer1=view.findViewById(R.id.text_view_p1);
         textViewPlayer2=view.findViewById(R.id.text_view_p2);
         for(int i=0;i<3;i++){

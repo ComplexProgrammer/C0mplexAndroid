@@ -74,10 +74,10 @@ public class GuidFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_guid, container, false);
-        mAdView = view.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
-        mAdView.loadAd(adRequest);
+//        mAdView = view.findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder()
+//                .build();
+//        mAdView.loadAd(adRequest);
         GeneratedGuid(view);
         GuidCreation=view.findViewById(R.id.GuidCreation);
         GuidCopy=view.findViewById(R.id.GuidCopy);

@@ -26,11 +26,11 @@
         <activity
             android:name=".ui.games.FlyGameActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.noActionBar"></activity>
+            android:theme="@style/AppTheme.noActionBar" />
         <activity
             android:name=".ui.games.FlyActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.noActionBar"></activity>
+            android:theme="@style/AppTheme.noActionBar" />
         <activity android:name=".ui.account.NotifRegistrationActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>

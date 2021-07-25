@@ -37,10 +37,10 @@ public class HomeViewByIdFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home_view_by_id, container, false);
-        mAdView = view.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
-        mAdView.loadAd(adRequest);
+//        mAdView = view.findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder()
+//                .build();
+//        mAdView.loadAd(adRequest);
         imageView=view.findViewById(R.id.imageView);
         title=view.findViewById(R.id.title);
         text=view.findViewById(R.id.text);

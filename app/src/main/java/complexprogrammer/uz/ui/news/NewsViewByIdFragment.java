@@ -33,10 +33,10 @@ public class NewsViewByIdFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news_view_by_id, container, false);
-        mAdView = view.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
-        mAdView.loadAd(adRequest);
+//        mAdView = view.findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder()
+//                .build();
+//        mAdView.loadAd(adRequest);
         imageView=view.findViewById(R.id.imageView);
         short_title=view.findViewById(R.id.short_title);
         long_title=view.findViewById(R.id.long_title);
