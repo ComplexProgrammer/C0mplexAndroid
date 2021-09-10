@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudio/C0mplexAndroid/app/src/main/res/layout/activity_clicked.xml" value="0.20520833333333333" />
+        <entry key="..\:/AndroidStudio/C0mplexAndroid/app/src/main/res/layout/fragment_news_view_by_id.xml" value="0.19791666666666666" />
+        <entry key="..\:/AndroidStudio/C0mplexAndroid/app/src/main/res/layout/news_row_grid_items.xml" value="0.20520833333333333" />
         <entry key="..\:/My Programm/My Android Studio programm/C0mplexAndroid/app/src/main/res/drawable/actionbar_background.xml" value="0.14166666666666666" />
         <entry key="..\:/My Programm/My Android Studio programm/C0mplexAndroid/app/src/main/res/drawable/ic_baseline_apps_24.xml" value="0.14166666666666666" />
         <entry key="..\:/My Programm/My Android Studio programm/C0mplexAndroid/app/src/main/res/layout/activity_clicked.xml" value="0.1" />
