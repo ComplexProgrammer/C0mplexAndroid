@@ -15,7 +15,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
-    @GET("Api/C0mplexApi/GetNews/")
+    @GET("GetSavol/")
     Call<List<NewsResponse>> getAllNews();
 
     @POST("Api/C0mplexApi/Login/")

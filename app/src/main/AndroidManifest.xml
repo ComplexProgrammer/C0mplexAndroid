@@ -32,7 +32,8 @@
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.noActionBar" />
         <activity android:name=".ui.account.NotifRegistrationActivity" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".SplashScreenActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,7 +54,8 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
 
-        <receiver android:name=".models.MyReceiver">
+        <receiver android:name=".models.MyReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />

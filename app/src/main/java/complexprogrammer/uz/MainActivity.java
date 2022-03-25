@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationDrawer
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+            //drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationDrawer
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        //drawer.closeDrawer(GravityCompat.START);
     }
 
 

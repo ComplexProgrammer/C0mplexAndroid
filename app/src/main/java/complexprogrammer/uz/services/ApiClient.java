@@ -14,7 +14,7 @@ public class ApiClient {
                 .addInterceptor(httpLoggingInterceptor)
                 .build();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://complexprogrammer.uz:4444/")
+                .baseUrl("http://complexprogrammer.uz/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();

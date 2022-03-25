@@ -380,7 +380,7 @@ public class NavigationDrawerFragment extends Fragment {
 
 
         if (mDrawerToggle.onOptionsItemSelected(item)) {
-            getActionBar().hide();
+            //getActionBar().hide();
             return true;
         }
         else{
